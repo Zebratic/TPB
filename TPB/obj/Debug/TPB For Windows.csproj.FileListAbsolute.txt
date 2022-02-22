@@ -1,0 +1,29 @@
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\bin\Debug\TPB.exe
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\bin\Debug\TPB.pdb
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Debug\TpbForWindows.Properties.Resources.resources
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Debug\TPB For Windows.csproj.GenerateResource.Cache
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Debug\TPB.exe
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Debug\TPB.pdb
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Debug\TpbForWindows.Views.Forms.MainForm.resources
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Debug\TpbForWindows.Views.Forms.PreviewForm.resources
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Debug\TpbForWindows.Views.Forms.SettingsForm.resources
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Debug\TpbForWindows.Views.Forms.ExtendedInfoForm.resources
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Debug\TpbForWindows.Views.Controls.TorrentStrip.resources
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\bin\Debug\AboPersistance.dll
+D:\Work\TPB For Windows\TPB For Windows\bin\Debug\TPB.exe.config
+D:\Work\TPB For Windows\TPB For Windows\bin\Debug\TPB.exe
+D:\Work\TPB For Windows\TPB For Windows\bin\Debug\TPB.pdb
+D:\Work\TPB For Windows\TPB For Windows\bin\Debug\AboPersistance.dll
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TPB For Windows.csproj.AssemblyReference.cache
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TPB For Windows.csproj.SuggestedBindingRedirects.cache
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TpbForWindows.Views.Forms.ExtendedInfoForm.resources
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TpbForWindows.Views.Forms.MainForm.resources
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TpbForWindows.Views.Forms.PreviewForm.resources
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TpbForWindows.Properties.Resources.resources
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TpbForWindows.Views.Forms.SettingsForm.resources
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TpbForWindows.Views.Controls.TorrentStrip.resources
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TPB For Windows.csproj.GenerateResource.cache
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TPB For Windows.csproj.CoreCompileInputs.cache
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TPB For Windows.csproj.CopyComplete
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TPB.exe
+D:\Work\TPB For Windows\TPB For Windows\obj\Debug\TPB.pdb

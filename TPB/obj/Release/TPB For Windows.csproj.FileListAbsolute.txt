@@ -1,0 +1,13 @@
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\bin\Release\TPB.exe
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\bin\Release\TPB.pdb
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Release\TpbForWindows.Views.Forms.ExtendedInfoForm.resources
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Release\TpbForWindows.Views.Forms.MainForm.resources
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Release\TpbForWindows.Views.Forms.PreviewForm.resources
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Release\TpbForWindows.Properties.Resources.resources
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Release\TpbForWindows.Views.Forms.SettingsForm.resources
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Release\TpbForWindows.Views.Controls.TorrentStrip.resources
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Release\TPB For Windows.csproj.GenerateResource.Cache
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Release\TPB.exe
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Release\TPB.pdb
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\obj\Release\TPB For Windows.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2013\Projects\End User Based\TPB For Windows\TPB For Windows\bin\Release\AboPersistance.dll
