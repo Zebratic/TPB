@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using TpbForWindows.Views.Forms;
+using TPB.Views.Forms;
 
-namespace TpbForWindows
+namespace TPB
 {
     static class Program
     {

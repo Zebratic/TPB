@@ -1,4 +1,4 @@
-﻿namespace TpbForWindows.Views.Controls
+﻿namespace TPB.Views.Controls
 {
     partial class TorrentStrip
     {
@@ -128,12 +128,12 @@
             this.btnPreview.FlatAppearance.BorderSize = 0;
             this.btnPreview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPreview.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPreview.Image = global::TpbForWindows.Properties.Resources.Youtube;
             this.btnPreview.Location = new System.Drawing.Point(656, 0);
             this.btnPreview.Margin = new System.Windows.Forms.Padding(0);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(41, 34);
             this.btnPreview.TabIndex = 10;
+            this.btnPreview.Image = global::TPB.Properties.Resources.Youtube;
             this.btnPreview.UseVisualStyleBackColor = true;
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
@@ -144,12 +144,12 @@
             this.btnMagnet.FlatAppearance.BorderSize = 0;
             this.btnMagnet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMagnet.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMagnet.Image = global::TpbForWindows.Properties.Resources.Magnet;
             this.btnMagnet.Location = new System.Drawing.Point(697, 0);
             this.btnMagnet.Margin = new System.Windows.Forms.Padding(0);
             this.btnMagnet.Name = "btnMagnet";
             this.btnMagnet.Size = new System.Drawing.Size(41, 34);
             this.btnMagnet.TabIndex = 9;
+            this.btnMagnet.Image = global::TPB.Properties.Resources.Magnet;
             this.btnMagnet.UseVisualStyleBackColor = true;
             this.btnMagnet.Click += new System.EventHandler(this.btnMagnet_Click);
             // 

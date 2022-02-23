@@ -4,10 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using TpbForWindows.PbApi;
-using TpbForWindows.Views.Forms;
+using TPB.Api;
+using TPB.Views.Forms;
 
-namespace TpbForWindows.Views.Controls
+namespace TPB.Views.Controls
 {
     // The preview location is saved and restored for the current application session,
     // where the size persists through multiple sessions

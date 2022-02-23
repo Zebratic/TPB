@@ -4,10 +4,10 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Web;
 using System.Windows.Forms;
-using TpbForWindows.PbApi;
-using TpbForWindows.Views.Controls;
+using TPB.Api;
+using TPB.Views.Controls;
 
-namespace TpbForWindows.Views.Forms
+namespace TPB.Views.Forms
 {
     public partial class MainForm : Form
     {
@@ -221,7 +221,7 @@ namespace TpbForWindows.Views.Forms
         #region ToolStripItem Click Events
         private void tsmiRottenTomatoes_Click(object sender, EventArgs e)
         {
-            const string URL_BASE = "http://www.rottentomatoes.com/search/?search=";
+            const string URL_BASE = "http://www.rott    entomatoes.com/search/?search=";
             // Make string URL safe
             string searchUrl = URL_BASE + HttpUtility.UrlEncode(GetClickedMovieName());
             Program.Start(searchUrl);

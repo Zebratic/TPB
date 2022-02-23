@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TpbForWindows.Properties {
+namespace TPB.Properties {
     using System;
     
     

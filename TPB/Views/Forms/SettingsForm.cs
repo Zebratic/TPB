@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net;
 using System.Windows.Forms;
-using TpbForWindows.PbApi;
+using TPB.Api;
 
-namespace TpbForWindows.Views.Forms
+namespace TPB.Views.Forms
 {
     public partial class SettingsForm : Form
     {

@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace TpbForWindows.Views.Controls
+namespace TPB.Views.Controls
 {
     /// <summary>
     /// Represents a button configured for displaying an image. The image will illuminate

@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using TpbForWindows.PbApi;
+using TPB.Api;
 
-namespace TpbForWindows.Views.Forms
+namespace TPB.Views.Forms
 {
     public partial class ExtendedInfoForm : Form
     {

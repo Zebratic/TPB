@@ -1,6 +1,6 @@
-﻿using TpbForWindows.Views.Controls;
+﻿using TPB.Views.Controls;
 
-namespace TpbForWindows.Views.Forms
+namespace TPB.Views.Forms
 {
     partial class MainForm
     {
@@ -43,15 +43,15 @@ namespace TpbForWindows.Views.Forms
             this.tsmiRottenTomatoes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExtra = new System.Windows.Forms.ToolStripMenuItem();
             this.lblPage = new System.Windows.Forms.Label();
-            this.pnlTorrents = new TpbForWindows.Views.Controls.TorrentPanel();
+            this.pnlTorrents = new TPB.Views.Controls.TorrentPanel();
             this.comboSort = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtTerm = new TpbForWindows.Views.Controls.ExTextBoxBox();
-            this.btnSearch = new TpbForWindows.Views.Controls.IlluminateButton();
-            this.btnAbout = new TpbForWindows.Views.Controls.IlluminateButton();
-            this.btnSettings = new TpbForWindows.Views.Controls.IlluminateButton();
-            this.btnPrevious = new TpbForWindows.Views.Controls.IlluminateButton();
-            this.btnNext = new TpbForWindows.Views.Controls.IlluminateButton();
+            this.txtTerm = new TPB.Views.Controls.ExTextBoxBox();
+            this.btnSearch = new TPB.Views.Controls.IlluminateButton();
+            this.btnAbout = new TPB.Views.Controls.IlluminateButton();
+            this.btnSettings = new TPB.Views.Controls.IlluminateButton();
+            this.btnPrevious = new TPB.Views.Controls.IlluminateButton();
+            this.btnNext = new TPB.Views.Controls.IlluminateButton();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.cmsQuickLinks.SuspendLayout();
             this.cmsTorrentInfo.SuspendLayout();
@@ -100,34 +100,34 @@ namespace TpbForWindows.Views.Forms
             this.tsmiRottenTomatoes,
             this.tsmiExtra});
             this.cmsTorrentInfo.Name = "contextMenuStrip1";
-            this.cmsTorrentInfo.Size = new System.Drawing.Size(207, 92);
+            this.cmsTorrentInfo.Size = new System.Drawing.Size(205, 92);
             this.cmsTorrentInfo.Opening += new System.ComponentModel.CancelEventHandler(this.cmsTorrentInfo_Opening);
             // 
             // tsmiCopyMovieName
             // 
             this.tsmiCopyMovieName.Name = "tsmiCopyMovieName";
-            this.tsmiCopyMovieName.Size = new System.Drawing.Size(206, 22);
+            this.tsmiCopyMovieName.Size = new System.Drawing.Size(204, 22);
             this.tsmiCopyMovieName.Text = "&Copy Movie Name";
             this.tsmiCopyMovieName.Click += new System.EventHandler(this.tsmiCopyMovieName_Click);
             // 
             // tsmiSearchThis
             // 
             this.tsmiSearchThis.Name = "tsmiSearchThis";
-            this.tsmiSearchThis.Size = new System.Drawing.Size(206, 22);
+            this.tsmiSearchThis.Size = new System.Drawing.Size(204, 22);
             this.tsmiSearchThis.Text = "&Search this";
             this.tsmiSearchThis.Click += new System.EventHandler(this.tsmiSearchThis_Click);
             // 
             // tsmiRottenTomatoes
             // 
             this.tsmiRottenTomatoes.Name = "tsmiRottenTomatoes";
-            this.tsmiRottenTomatoes.Size = new System.Drawing.Size(206, 22);
+            this.tsmiRottenTomatoes.Size = new System.Drawing.Size(204, 22);
             this.tsmiRottenTomatoes.Text = "Go to &Rotten Tomatoes...";
             this.tsmiRottenTomatoes.Click += new System.EventHandler(this.tsmiRottenTomatoes_Click);
             // 
             // tsmiExtra
             // 
             this.tsmiExtra.Name = "tsmiExtra";
-            this.tsmiExtra.Size = new System.Drawing.Size(206, 22);
+            this.tsmiExtra.Size = new System.Drawing.Size(204, 22);
             this.tsmiExtra.Text = "Go to &Torrent Page...";
             this.tsmiExtra.Click += new System.EventHandler(this.tsmiTorrentPage_Click);
             // 
@@ -153,7 +153,7 @@ namespace TpbForWindows.Views.Forms
             this.pnlTorrents.BackColor = System.Drawing.Color.Silver;
             this.pnlTorrents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlTorrents.ContextMenuStrip = this.cmsTorrentInfo;
-            this.pnlTorrents.DefaultStripDoubleClickMode = TpbForWindows.TorrentDoubleClickMode.OpenExtendedInfo;
+            this.pnlTorrents.DefaultStripDoubleClickMode = TPB.TorrentDoubleClickMode.OpenExtendedInfo;
             this.pnlTorrents.Location = new System.Drawing.Point(12, 48);
             this.pnlTorrents.Name = "pnlTorrents";
             this.pnlTorrents.Size = new System.Drawing.Size(906, 457);
@@ -185,7 +185,7 @@ namespace TpbForWindows.Views.Forms
             this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(399, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 14);
+            this.label1.Size = new System.Drawing.Size(64, 14);
             this.label1.TabIndex = 18;
             this.label1.Text = "Sort Mode";
             // 
@@ -219,7 +219,7 @@ namespace TpbForWindows.Views.Forms
             this.btnSearch.HoverBrightness = 1F;
             this.btnSearch.HoverContrast = 1.5F;
             this.btnSearch.HoverGamma = 0.9F;
-            this.btnSearch.Image = global::TpbForWindows.Properties.Resources.Search;
+            this.btnSearch.Image = global::TPB.Properties.Resources.Search;
             this.btnSearch.Location = new System.Drawing.Point(880, 7);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(34, 34);
@@ -244,7 +244,7 @@ namespace TpbForWindows.Views.Forms
             this.btnAbout.HoverBrightness = 1F;
             this.btnAbout.HoverContrast = 1.5F;
             this.btnAbout.HoverGamma = 0.9F;
-            this.btnAbout.Image = global::TpbForWindows.Properties.Resources.About;
+            this.btnAbout.Image = global::TPB.Properties.Resources.About;
             this.btnAbout.Location = new System.Drawing.Point(56, 511);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(38, 38);
@@ -270,7 +270,7 @@ namespace TpbForWindows.Views.Forms
             this.btnSettings.HoverBrightness = 1F;
             this.btnSettings.HoverContrast = 1.5F;
             this.btnSettings.HoverGamma = 0.9F;
-            this.btnSettings.Image = global::TpbForWindows.Properties.Resources.Cog;
+            this.btnSettings.Image = global::TPB.Properties.Resources.Cog;
             this.btnSettings.Location = new System.Drawing.Point(12, 511);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(38, 38);
@@ -297,7 +297,7 @@ namespace TpbForWindows.Views.Forms
             this.btnPrevious.HoverBrightness = 1F;
             this.btnPrevious.HoverContrast = 1.5F;
             this.btnPrevious.HoverGamma = 0.9F;
-            this.btnPrevious.Image = global::TpbForWindows.Properties.Resources.LeftArrow;
+            this.btnPrevious.Image = global::TPB.Properties.Resources.LeftArrow;
             this.btnPrevious.Location = new System.Drawing.Point(829, 511);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(38, 38);
@@ -323,7 +323,7 @@ namespace TpbForWindows.Views.Forms
             this.btnNext.HoverBrightness = 1F;
             this.btnNext.HoverContrast = 1.5F;
             this.btnNext.HoverGamma = 0.9F;
-            this.btnNext.Image = global::TpbForWindows.Properties.Resources.RightArrow;
+            this.btnNext.Image = global::TPB.Properties.Resources.RightArrow;
             this.btnNext.Location = new System.Drawing.Point(880, 511);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(38, 38);
@@ -334,7 +334,7 @@ namespace TpbForWindows.Views.Forms
             // picLogo
             // 
             this.picLogo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picLogo.Image = global::TpbForWindows.Properties.Resources.Logo;
+            this.picLogo.Image = global::TPB.Properties.Resources.Logo;
             this.picLogo.Location = new System.Drawing.Point(12, 12);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(180, 30);

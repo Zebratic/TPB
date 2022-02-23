@@ -1,4 +1,4 @@
-﻿namespace TpbForWindows.Views.Forms
+﻿namespace TPB.Views.Forms
 {
     partial class ExtendedInfoForm
     {
@@ -39,7 +39,7 @@
             this.txtComments = new System.Windows.Forms.RichTextBox();
             this.panel = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtInfoHash = new TpbForWindows.Views.Controls.ExTextBoxBox();
+            this.txtInfoHash = new TPB.Views.Controls.ExTextBoxBox();
             ((System.ComponentModel.ISupportInitialize)(this.picPreview)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel.SuspendLayout();

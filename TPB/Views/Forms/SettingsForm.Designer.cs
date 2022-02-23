@@ -1,4 +1,4 @@
-﻿namespace TpbForWindows.Views.Forms
+﻿namespace TPB.Views.Forms
 {
     partial class SettingsForm
     {

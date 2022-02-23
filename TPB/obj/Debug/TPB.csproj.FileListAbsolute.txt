@@ -1,0 +1,17 @@
+C:\Work\TPB\TPB\bin\Debug\TPB.exe.config
+C:\Work\TPB\TPB\bin\Debug\TPB.exe
+C:\Work\TPB\TPB\bin\Debug\TPB.pdb
+C:\Work\TPB\TPB\bin\Debug\AboPersistance.dll
+C:\Work\TPB\TPB\obj\Debug\TPB.csproj.AssemblyReference.cache
+C:\Work\TPB\TPB\obj\Debug\TPB.csproj.SuggestedBindingRedirects.cache
+C:\Work\TPB\TPB\obj\Debug\TPB.Views.Forms.ExtendedInfoForm.resources
+C:\Work\TPB\TPB\obj\Debug\TPB.Views.Forms.MainForm.resources
+C:\Work\TPB\TPB\obj\Debug\TPB.Views.Forms.PreviewForm.resources
+C:\Work\TPB\TPB\obj\Debug\TPB.Properties.Resources.resources
+C:\Work\TPB\TPB\obj\Debug\TPB.Views.Forms.SettingsForm.resources
+C:\Work\TPB\TPB\obj\Debug\TPB.Views.Controls.TorrentStrip.resources
+C:\Work\TPB\TPB\obj\Debug\TPB.csproj.GenerateResource.cache
+C:\Work\TPB\TPB\obj\Debug\TPB.csproj.CoreCompileInputs.cache
+C:\Work\TPB\TPB\obj\Debug\TPB.csproj.CopyComplete
+C:\Work\TPB\TPB\obj\Debug\TPB.exe
+C:\Work\TPB\TPB\obj\Debug\TPB.pdb

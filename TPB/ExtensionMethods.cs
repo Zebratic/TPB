@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace TpbForWindows
+namespace TPB
 {
     static class ExtensionMethods
     {

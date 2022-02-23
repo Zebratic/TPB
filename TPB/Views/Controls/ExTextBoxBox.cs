@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace TpbForWindows.Views.Controls
+namespace TPB.Views.Controls
 {
     /// <summary>
     /// Represents a windows text box control with extended functionality

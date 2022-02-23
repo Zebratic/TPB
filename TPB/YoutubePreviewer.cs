@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace TpbForWindows
+namespace TPB
 {
     /// <summary>
     /// Retrieves a youtube video link that is to be displayed as a torrent preview

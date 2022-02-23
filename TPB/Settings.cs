@@ -2,9 +2,9 @@
 using System;
 using System.Drawing;
 using System.Net;
-using TpbForWindows.PbApi;
+using TPB.Api;
 
-namespace TpbForWindows
+namespace TPB
 {
     /// <summary>
     /// Specifies the behavior of a torrent when it is double-clicked

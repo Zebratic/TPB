@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace TpbForWindows.Views.Forms
+namespace TPB.Views.Forms
 {
     public partial class PreviewForm : Form
     {
