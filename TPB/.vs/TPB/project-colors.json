@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "c6ce3611-aa94-45d4-a3ab-15a426206dd2": {
+      "ProjectGuid": "c6ce3611-aa94-45d4-a3ab-15a426206dd2",
+      "DisplayName": "HTX-NINJA",
+      "ColorIndex": 0
+    },
+    "1e9d2a88-776d-446b-a00d-b5431be53595": {
+      "ProjectGuid": "1e9d2a88-776d-446b-a00d-b5431be53595",
+      "DisplayName": "TPB",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 2
+}

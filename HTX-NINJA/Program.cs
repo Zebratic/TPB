@@ -40,7 +40,7 @@ namespace HTX_NINJA
             await RegisterCommandsAsync();
             try
             {
-                await _client.LoginAsync(TokenType.Bot, "OTIwNjU4MTgwMzExMjIwMjQ0.Ybnjvw.eL6Lv-hzabZ8X4Hc_Jlj0vzQGz4");
+                await _client.LoginAsync(TokenType.Bot, "");
             }
             catch
             {
