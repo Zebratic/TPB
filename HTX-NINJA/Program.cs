@@ -3,12 +3,12 @@ using Discord.Commands;
 using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using TPB.Api;
 
 namespace HTX_NINJA
 {
@@ -37,10 +37,13 @@ namespace HTX_NINJA
             _client.Log += _client_Log;
             _client.Ready += _client_Ready;
 
+            string token = "";
+            try { token = File.ReadAllText("token.txt"); } catch { Console.WriteLine("token.txt missing!"); }
+
             await RegisterCommandsAsync();
             try
             {
-                await _client.LoginAsync(TokenType.Bot, "");
+                await _client.LoginAsync(TokenType.Bot, token);
             }
             catch
             {

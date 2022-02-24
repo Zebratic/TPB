@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace TPB.Api
+namespace HTX_NINJA.TPB
 {
     internal class PbResultPage : ICloneable
     {
@@ -68,10 +68,6 @@ namespace TPB.Api
         }
         #endregion
 
-        /// <summary>
-        /// Load a page from content
-        /// </summary>
-        /// <param name="content">The contents of a search results page</param>
         public void Load(string content)
         {
             _content = content;
@@ -83,9 +79,6 @@ namespace TPB.Api
             Loaded = true;
         }
 
-        /// <summary>
-        /// Reverts the page to its empty state
-        /// </summary>
         public void Reset()
         {
             _content = null;
@@ -96,10 +89,6 @@ namespace TPB.Api
             Loaded = false;
         }
 
-        /// <summary>
-        /// Gets an array of torrents that are within the results page
-        /// </summary>
-        /// <returns>Returns an empty array if no torrent found</returns>
         public TorrentInfo[] GetTorrents()
         {
             const RegexOptions OPTIONS = RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace;
@@ -207,10 +196,6 @@ namespace TPB.Api
             }
         }
 
-        /// <summary>
-        /// Gets a navigation link, either next or previous page
-        /// </summary>
-        /// <param name="isNext">Determines whether to yeild the next or previous page link</param>
         private string GetNavLink(bool isNext)
         {
             string id = isNext ? "next" : "prev";
@@ -221,9 +206,6 @@ namespace TPB.Api
             return WebPathing.Combine(ThePirateBay.SiteDomain, match.Groups["Link"].Value);
         }
 
-        /// <summary>
-        /// Gets the total amount of pages of results there are
-        /// </summary>
         private int GetTotalPages()
         {
             const string PATTERN = @"search/.+?/(?<Page>\d{1,3})";
@@ -239,9 +221,6 @@ namespace TPB.Api
             return highestNum + 1;
         }
 
-        /// <summary>
-        /// Sets the current page by analyzing the previous page link
-        /// </summary>
         private void SetCurrentPageNumber()
         {
             if (PreviousPageLink == null)

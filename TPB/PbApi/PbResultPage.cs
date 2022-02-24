@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace TPB.Api
+namespace HTX_NINJA.TPB
 {
     internal class PbResultPage : ICloneable
     {

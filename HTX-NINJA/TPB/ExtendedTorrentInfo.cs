@@ -3,43 +3,17 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace TPB.Api
+namespace HTX_NINJA.TPB
 {
-    /// <summary>
-    /// Represents additional info which is retrieved from the torrent page
-    /// </summary>
     public class ExtendedTorrentInfo
     {
-        /// <summary>
-        /// Gets the description (includes HTML formatting)
-        /// </summary>
         public string Description { get; private set; }
-        /// <summary>
-        /// Gets an array of user comments
-        /// </summary>
         public string[] Comments { get; private set; }
-        /// <summary>
-        /// Gets the link to the preview image
-        /// </summary>
         public string ImageLink { get; private set; }
-
-        /// <summary>
-        /// Gets the info hash for this torrent
-        /// </summary>
         public string InfoHash { get; private set; }
-
-        /// <summary>
-        /// Gets how many files there are for the torrent
-        /// </summary>
         public int FileCount { get; private set; }
-
         protected ExtendedTorrentInfo() { }
 
-        /// <summary>
-        /// Loads extended torrent info asyncronously into a new ExtendedTorrentInfo instance
-        /// </summary>
-        /// <param name="pageLink">The page link to the entended information</param>
-        /// <returns>A Task which yeilds ExtendedTorrentInfo</returns>
         public static async Task<ExtendedTorrentInfo> LoadAsync(string pageLink)
         {
             var info = new ExtendedTorrentInfo();

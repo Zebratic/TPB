@@ -1,4 +1,4 @@
-﻿namespace TPB.Views.Controls
+﻿namespace HTX_NINJA.Views.Controls
 {
     partial class TorrentStrip
     {
@@ -133,7 +133,7 @@
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(41, 34);
             this.btnPreview.TabIndex = 10;
-            this.btnPreview.Image = global::TPB.Properties.Resources.Youtube;
+            this.btnPreview.Image = global::HTX_NINJA.Properties.Resources.Youtube;
             this.btnPreview.UseVisualStyleBackColor = true;
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
@@ -149,7 +149,7 @@
             this.btnMagnet.Name = "btnMagnet";
             this.btnMagnet.Size = new System.Drawing.Size(41, 34);
             this.btnMagnet.TabIndex = 9;
-            this.btnMagnet.Image = global::TPB.Properties.Resources.Magnet;
+            this.btnMagnet.Image = global::HTX_NINJA.Properties.Resources.Magnet;
             this.btnMagnet.UseVisualStyleBackColor = true;
             this.btnMagnet.Click += new System.EventHandler(this.btnMagnet_Click);
             // 

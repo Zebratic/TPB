@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TPB.Properties {
+namespace HTX_NINJA.Properties {
     using System;
     
     

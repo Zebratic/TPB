@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using TPB.Views.Forms;
+using HTX_NINJA.Views.Forms;
 
-namespace TPB
+namespace HTX_NINJA
 {
     static class Program
     {

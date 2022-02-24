@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net;
 using System.Windows.Forms;
-using TPB.Api;
+using HTX_NINJA.TPB;
 
-namespace TPB.Views.Forms
+namespace HTX_NINJA.Views.Forms
 {
     public partial class SettingsForm : Form
     {

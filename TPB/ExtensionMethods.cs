@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace TPB
+namespace HTX_NINJA
 {
     static class ExtensionMethods
     {

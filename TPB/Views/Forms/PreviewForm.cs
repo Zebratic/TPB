@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace TPB.Views.Forms
+namespace HTX_NINJA.Views.Forms
 {
     public partial class PreviewForm : Form
     {

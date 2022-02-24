@@ -2,44 +2,14 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace TPB.Api
+namespace HTX_NINJA.TPB
 {
-    /*
-     *     The URL format is as such:
-     *     
-     *     http://thepiratebay.org/search/
-     *     {search term}/{page index}/{sort mode index}/{filter index}
-     */
-
-    /// <summary>
-    /// Represents search parameters for a PirateBay search
-    /// </summary>
     class PbSearchQuery
     {
-        /// <summary>
-        /// Gets the search term
-        /// </summary>
         public string Term { get; private set; }
-
-        /// <summary>
-        /// Gets the page index to start the search at
-        /// </summary>
         public int PageIndex { get; private set; }
-
-        /// <summary>
-        /// Gets the desired torrent sort mode
-        /// </summary>
         public PbSortMode SortMode { get; private set; }
-
-        /// <summary>
-        /// Gets the category filter
-        /// </summary>
         public TorrentCategory Categories { get; private set; }
-
-        /// <param name="term">The search term</param>
-        /// <param name="pageIndex">The page index, typically this should be 0</param>
-        /// <param name="sortMode">The sort mode determines how the results will be displayed</param>
-        /// <param name="filter">The filter will determine what results will be displayed</param>
         public PbSearchQuery(string term, PbSortMode sortMode, TorrentCategory filter, int pageIndex = 0)
         {
             Term = term;
@@ -48,10 +18,6 @@ namespace TPB.Api
             Categories = filter;
         }
 
-        /// <summary>
-        /// Attempts to parse a pirate bay search link to a PbSearchParams
-        /// </summary>
-        /// <returns>Returns null, if parsing fails</returns>
         public static PbSearchQuery FromSearchLink(string searchUrl)
         {
             const string PATTERN = @"search/(?<Term>[^/]+)(/(?<PageIndex>\d+)/(?<Sort>\d+)/(?<Filter>[\d,]+))?";
@@ -77,18 +43,12 @@ namespace TPB.Api
             return null;
         }
 
-        /// <summary>
-        /// Constructs a search URL based on the parameters
-        /// </summary>
         public string ToSearchLink()
         {
             return ThePirateBay.SiteDomain + "/" + "search/" + Term + "/" + PageIndex + 
                 "/" + ((int) SortMode) + "/" + CategoriesToString(Categories);
         }
 
-        /// <summary>
-        /// Converts TorrentCategories to a comma seperated string
-        /// </summary>
         private static string CategoriesToString(TorrentCategory categories)
         {
             if (categories == TorrentCategory.None) return "0";
@@ -101,9 +61,6 @@ namespace TPB.Api
             return SB.ToString().TrimEnd(',');
         }
 
-        /// <summary>
-        /// Converts a comma seperated filter string to TorrentCategories
-        /// </summary>
         private static TorrentCategory CategoriesFromString(string str)
         {
             string[] strNumbers = str.Split(new [] {','}, StringSplitOptions.RemoveEmptyEntries);

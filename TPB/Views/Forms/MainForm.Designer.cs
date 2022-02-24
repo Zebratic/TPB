@@ -1,6 +1,6 @@
-﻿using TPB.Views.Controls;
+﻿using HTX_NINJA.Views.Controls;
 
-namespace TPB.Views.Forms
+namespace HTX_NINJA.Views.Forms
 {
     partial class MainForm
     {
@@ -43,15 +43,15 @@ namespace TPB.Views.Forms
             this.tsmiRottenTomatoes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExtra = new System.Windows.Forms.ToolStripMenuItem();
             this.lblPage = new System.Windows.Forms.Label();
-            this.pnlTorrents = new TPB.Views.Controls.TorrentPanel();
+            this.pnlTorrents = new HTX_NINJA.Views.Controls.TorrentPanel();
             this.comboSort = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtTerm = new TPB.Views.Controls.ExTextBoxBox();
-            this.btnSearch = new TPB.Views.Controls.IlluminateButton();
-            this.btnAbout = new TPB.Views.Controls.IlluminateButton();
-            this.btnSettings = new TPB.Views.Controls.IlluminateButton();
-            this.btnPrevious = new TPB.Views.Controls.IlluminateButton();
-            this.btnNext = new TPB.Views.Controls.IlluminateButton();
+            this.txtTerm = new HTX_NINJA.Views.Controls.ExTextBoxBox();
+            this.btnSearch = new HTX_NINJA.Views.Controls.IlluminateButton();
+            this.btnAbout = new HTX_NINJA.Views.Controls.IlluminateButton();
+            this.btnSettings = new HTX_NINJA.Views.Controls.IlluminateButton();
+            this.btnPrevious = new HTX_NINJA.Views.Controls.IlluminateButton();
+            this.btnNext = new HTX_NINJA.Views.Controls.IlluminateButton();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.cmsQuickLinks.SuspendLayout();
             this.cmsTorrentInfo.SuspendLayout();
@@ -153,7 +153,7 @@ namespace TPB.Views.Forms
             this.pnlTorrents.BackColor = System.Drawing.Color.Silver;
             this.pnlTorrents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlTorrents.ContextMenuStrip = this.cmsTorrentInfo;
-            this.pnlTorrents.DefaultStripDoubleClickMode = TPB.TorrentDoubleClickMode.OpenExtendedInfo;
+            this.pnlTorrents.DefaultStripDoubleClickMode = HTX_NINJA.TorrentDoubleClickMode.OpenExtendedInfo;
             this.pnlTorrents.Location = new System.Drawing.Point(12, 48);
             this.pnlTorrents.Name = "pnlTorrents";
             this.pnlTorrents.Size = new System.Drawing.Size(906, 457);
@@ -219,7 +219,7 @@ namespace TPB.Views.Forms
             this.btnSearch.HoverBrightness = 1F;
             this.btnSearch.HoverContrast = 1.5F;
             this.btnSearch.HoverGamma = 0.9F;
-            this.btnSearch.Image = global::TPB.Properties.Resources.Search;
+            this.btnSearch.Image = global::HTX_NINJA.Properties.Resources.Search;
             this.btnSearch.Location = new System.Drawing.Point(880, 7);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(34, 34);
@@ -244,7 +244,7 @@ namespace TPB.Views.Forms
             this.btnAbout.HoverBrightness = 1F;
             this.btnAbout.HoverContrast = 1.5F;
             this.btnAbout.HoverGamma = 0.9F;
-            this.btnAbout.Image = global::TPB.Properties.Resources.About;
+            this.btnAbout.Image = global::HTX_NINJA.Properties.Resources.About;
             this.btnAbout.Location = new System.Drawing.Point(56, 511);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(38, 38);
@@ -270,7 +270,7 @@ namespace TPB.Views.Forms
             this.btnSettings.HoverBrightness = 1F;
             this.btnSettings.HoverContrast = 1.5F;
             this.btnSettings.HoverGamma = 0.9F;
-            this.btnSettings.Image = global::TPB.Properties.Resources.Cog;
+            this.btnSettings.Image = global::HTX_NINJA.Properties.Resources.Cog;
             this.btnSettings.Location = new System.Drawing.Point(12, 511);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(38, 38);
@@ -297,7 +297,7 @@ namespace TPB.Views.Forms
             this.btnPrevious.HoverBrightness = 1F;
             this.btnPrevious.HoverContrast = 1.5F;
             this.btnPrevious.HoverGamma = 0.9F;
-            this.btnPrevious.Image = global::TPB.Properties.Resources.LeftArrow;
+            this.btnPrevious.Image = global::HTX_NINJA.Properties.Resources.LeftArrow;
             this.btnPrevious.Location = new System.Drawing.Point(829, 511);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(38, 38);
@@ -323,7 +323,7 @@ namespace TPB.Views.Forms
             this.btnNext.HoverBrightness = 1F;
             this.btnNext.HoverContrast = 1.5F;
             this.btnNext.HoverGamma = 0.9F;
-            this.btnNext.Image = global::TPB.Properties.Resources.RightArrow;
+            this.btnNext.Image = global::HTX_NINJA.Properties.Resources.RightArrow;
             this.btnNext.Location = new System.Drawing.Point(880, 511);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(38, 38);
@@ -334,7 +334,7 @@ namespace TPB.Views.Forms
             // picLogo
             // 
             this.picLogo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picLogo.Image = global::TPB.Properties.Resources.Logo;
+            this.picLogo.Image = global::HTX_NINJA.Properties.Resources.Logo;
             this.picLogo.Location = new System.Drawing.Point(12, 12);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(180, 30);

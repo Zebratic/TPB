@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace TPB.Api
+namespace HTX_NINJA.TPB
 {
     /// <summary>
     /// Provides functionality for working with web paths

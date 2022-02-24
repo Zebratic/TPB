@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace TPB.Api
+namespace HTX_NINJA.TPB
 {
     /*
      *     The URL format is as such:

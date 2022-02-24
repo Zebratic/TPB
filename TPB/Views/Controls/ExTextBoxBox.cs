@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace TPB.Views.Controls
+namespace HTX_NINJA.Views.Controls
 {
     /// <summary>
     /// Represents a windows text box control with extended functionality

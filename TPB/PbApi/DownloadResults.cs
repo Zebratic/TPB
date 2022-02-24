@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TPB.Api
+namespace HTX_NINJA.TPB
 {
     class DownloadResults
     {

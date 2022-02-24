@@ -46,3 +46,5 @@ C:\Work\TPB\HTX-NINJA\bin\Debug\System.Reactive.xml
 C:\Work\TPB\HTX-NINJA\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Work\TPB\HTX-NINJA\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Work\TPB\HTX-NINJA\bin\Debug\System.ValueTuple.xml
+C:\Work\TPB\HTX-NINJA\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Work\TPB\HTX-NINJA\bin\Debug\System.Diagnostics.DiagnosticSource.xml

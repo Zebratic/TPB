@@ -4,29 +4,13 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace TPB.Api
+namespace HTX_NINJA.TPB
 {
-    // Default downloader
-
-    /// <summary>
-    /// Provides web page downloading, using a global proxy
-    /// </summary>
     public static class PbWebPageDownloading
     {
-        /// <summary>
-        /// Gets or sets the global timeout in milliseconds
-        /// </summary>
         public static int GlobalTimout { get; set; }
-
-        /// <summary>
-        /// Gets or sets a proxy to use for this downloader
-        /// </summary>
         public static WebProxy GlobalProxy { get; set; }
 
-        /// <summary>
-        /// Downloads a webpage asyncronously
-        /// </summary>
-        /// <param name="url">A link to the page</param>
         public static async Task<string> DownloadWebPageAsync(string url)
         {
             using (var handler = new HttpClientHandler())

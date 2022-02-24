@@ -4,10 +4,10 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Web;
 using System.Windows.Forms;
-using TPB.Api;
-using TPB.Views.Controls;
+using HTX_NINJA.TPB;
+using HTX_NINJA.Views.Controls;
 
-namespace TPB.Views.Forms
+namespace HTX_NINJA.Views.Forms
 {
     public partial class MainForm : Form
     {

@@ -2,9 +2,9 @@
 using System;
 using System.Drawing;
 using System.Net;
-using TPB.Api;
+using HTX_NINJA.TPB;
 
-namespace TPB
+namespace HTX_NINJA
 {
     /// <summary>
     /// Specifies the behavior of a torrent when it is double-clicked

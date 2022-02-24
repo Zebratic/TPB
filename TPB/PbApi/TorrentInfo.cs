@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace TPB.Api
+namespace HTX_NINJA.TPB
 {
     /// <summary>
     /// Represents a torrent on a website

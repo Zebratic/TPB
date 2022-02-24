@@ -1,21 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace TPB.Api
+namespace HTX_NINJA.TPB
 {
-    /// <summary>
-    /// Functionality for downloading data from "ThePirateBay"
-    /// </summary>
     static class ThePirateBay
     {
-        /// <summary>
-        /// Gets the domain of the site
-        /// </summary>
         public const string SiteDomain = "https://thepiratebay10.org";
-
-        /// <summary>
-        /// Downloads the search results for the given search term asyncronously
-        /// </summary>
         public static async Task<DownloadResults> DownloadResultsAsync(PbSearchQuery query)
         {
             string URL = query.ToSearchLink();

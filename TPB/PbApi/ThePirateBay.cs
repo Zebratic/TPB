@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace TPB.Api
+namespace HTX_NINJA.TPB
 {
     /// <summary>
     /// Functionality for downloading data from "ThePirateBay"

@@ -4,10 +4,10 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using TPB.Api;
-using TPB.Views.Forms;
+using HTX_NINJA.TPB;
+using HTX_NINJA.Views.Forms;
 
-namespace TPB.Views.Controls
+namespace HTX_NINJA.Views.Controls
 {
     class TorrentPanel : Panel
     {

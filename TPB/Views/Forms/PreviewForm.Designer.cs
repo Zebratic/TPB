@@ -1,4 +1,4 @@
-﻿namespace TPB.Views.Forms
+﻿namespace HTX_NINJA.Views.Forms
 {
     partial class PreviewForm
     {

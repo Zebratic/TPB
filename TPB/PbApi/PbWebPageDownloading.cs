@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace TPB.Api
+namespace HTX_NINJA.TPB
 {
     // Default downloader
 
