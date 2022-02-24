@@ -48,21 +48,12 @@ namespace HTX_NINJA.DiscordBot
                 components.WithButton("<", "MOVIE_SEARCH_BACK", ButtonStyle.Secondary);
                 components.WithButton("SELECT", "MOVIE_SEARCH_SELECT", ButtonStyle.Success);
 
-                int added = 0;
-                foreach (MovieInfo movie in request.Results)
-                {
-                    if (added == 3)
-                        break;
-                    else if (movie.TorrentsAvailable != 0)
+                    if (request.Results[request.CurrentIndex].TorrentsAvailable != 0)
                     {
-                        string FixedTitle = movie.Title.Length > 33 ? movie.Title.Substring(0, 30) + "..." : movie.Title;
-                        builder.WithThumbnailUrl(movie.CoverURL);
-
-                        builder.AddField(FixedTitle, "imposter", false);
-                        components.WithButton(FixedTitle, $"MOVIE_SELECTED|{movie.Title}", ButtonStyle.Success);
-                        added++;
+                        string FixedTitle = request.Results[request.CurrentIndex].Title.Length > 33 ? request.Results[request.CurrentIndex].Title.Substring(0, 30) + "..." : request.Results[request.CurrentIndex].Title;
+                        builder.WithImageUrl(request.Results[request.CurrentIndex].CoverURL);
+                        builder.AddField(FixedTitle, request.Results[request.CurrentIndex].TorrentsAvailable + " Torrents available", false);
                     }
-                }
                 components.WithButton(">", "MOVIE_SEARCH_NEXT", ButtonStyle.Secondary);
                 components.WithButton("CANCEL", "MOVIE_SEARCH_CANCEL", ButtonStyle.Danger);
                 GlobalRequests.SearchRequests.Add(request);

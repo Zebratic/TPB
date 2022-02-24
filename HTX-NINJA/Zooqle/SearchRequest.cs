@@ -49,7 +49,8 @@ namespace HTX_NINJA.Zooqle
                     try { coverurl = request.BaseURL + movies[i].Split(new[] { "src=\"/" }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0].Replace("2.jpg", "0.jpg"); } catch { }
                     string torrentsavailable_string = movies[i].Split(new[] { "\"></i> " }, StringSplitOptions.None)[1].Split(new[] { " torrents" }, StringSplitOptions.None)[0];
                     int torrentsavailable = Convert.ToInt32(torrentsavailable_string);
-                    request.Results.Add(new MovieInfo(title, url, coverurl, torrentsavailable));
+                    if (torrentsavailable > 0)
+                        request.Results.Add(new MovieInfo(title, url, coverurl, torrentsavailable));
                 }
 
             }

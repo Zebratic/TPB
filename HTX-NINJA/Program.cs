@@ -49,7 +49,7 @@ namespace HTX_NINJA
             catch
             {
                 Console.WriteLine();
-                Console.WriteLine("Token not valid, or no internet connection!");
+                Console.WriteLine("Token not valid, or no Internet connection!");
                 Console.ReadLine();
                 Environment.Exit(1);
             }
@@ -59,10 +59,17 @@ namespace HTX_NINJA
             await Task.Delay(-1); // infinite wait
         }
 
-        private Task _client_ButtonExecuted(SocketMessageComponent arg)
+        private async Task _client_ButtonExecuted(SocketMessageComponent arg)
         {
             Console.WriteLine(arg.Data.CustomId + " was clicked!");
-            return Task.CompletedTask;
+            switch (arg.Data.CustomId)
+            {
+                // Since we set our buttons custom id as 'custom-id', we can check for it like this:
+                case "custom-id":
+                    // Lets respond by sending a message saying they clicked the button
+                    await component.RespondAsync($"{component.User.Mention} has clicked the button!");
+                    break;
+            }
         }
 
         private Task _client_Ready()
