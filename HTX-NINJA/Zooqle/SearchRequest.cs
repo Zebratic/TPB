@@ -24,6 +24,7 @@ namespace HTX_NINJA.Zooqle
         {
             Context = _context;
             CurrentIndex = 0;
+            Results = new List<MovieInfo>();
         }
     }
 

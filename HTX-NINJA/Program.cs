@@ -31,11 +31,12 @@ namespace HTX_NINJA
         {
             _client = new DiscordSocketClient();
             _commands = new CommandService();
-
-            //_services = new ServiceCollection().AddSingleton(_client).AddSingleton(_commands).BuildServiceProvider(); FUCK YOU STACKOVERFLOW EXCEPTION!
+             
+            //_services = new ServiceCollection().AddSingleton(_client).AddSingleton(_commands).BuildServiceProvider(); 
 
             _client.Log += _client_Log;
             _client.Ready += _client_Ready;
+            _client.ButtonExecuted += _client_ButtonExecuted;
 
             string token = "";
             try { token = File.ReadAllText("token.txt"); } catch { Console.WriteLine("token.txt missing!"); }
@@ -58,10 +59,17 @@ namespace HTX_NINJA
             await Task.Delay(-1); // infinite wait
         }
 
-        private async Task _client_Ready()
+        private Task _client_ButtonExecuted(SocketMessageComponent arg)
+        {
+            Console.WriteLine(arg.Data.CustomId + " was clicked!");
+            return Task.CompletedTask;
+        }
+
+        private Task _client_Ready()
         {
             Console.WriteLine("Bot is online and working perfectly fine!");
             new Thread(RPC).Start(); // start the RPC messages
+            return Task.CompletedTask;
         }
 
         private Task _client_Log(LogMessage arg)
