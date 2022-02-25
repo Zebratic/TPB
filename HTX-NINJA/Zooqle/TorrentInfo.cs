@@ -34,12 +34,21 @@ namespace HTX_NINJA.Zooqle
         public string URL { get; set; }
         public string CoverURL { get; set; }
         public int TorrentsAvailable { get; set; }
+        public List<TorrentInfo> Torrents = new List<TorrentInfo>();
+        public List<Quality> Qualities = new List<Quality>();
+        public Quality SelectedQuality { get; set; }
         public MovieInfo(string _title, string _url, string _coverurl, int _torrentsavailable)
         {
             Title = _title;
             URL = _url;
             CoverURL = _coverurl;
             TorrentsAvailable = _torrentsavailable;
+            SelectedQuality = Quality._Undefined;
+        }
+
+        public MovieInfo()
+        {
+
         }
     }
 
@@ -47,9 +56,9 @@ namespace HTX_NINJA.Zooqle
     {
         _Undefined,
         _3D,
-        _4K,
-        _1080P,
-        _720P,
+        _Ultra,
+        _1080p,
+        _720p,
         _Std,
         _Med,
         _Low,

@@ -37,27 +37,13 @@ namespace HTX_NINJA.DiscordBot
         public async Task Search2([Remainder] string term)
         {
             var User = Context.User;
-            var components = new ComponentBuilder();
-            EmbedBuilder builder = new EmbedBuilder();
-
             try
             {
                 SearchRequest request = new SearchRequest(Context);
                 request.SearchForTorrent(term);
-
-                components.WithButton("<", "MOVIE_SEARCH_BACK", ButtonStyle.Secondary);
-                components.WithButton("SELECT", "MOVIE_SEARCH_SELECT", ButtonStyle.Success);
-
-                    if (request.Results[request.CurrentIndex].TorrentsAvailable != 0)
-                    {
-                        string FixedTitle = request.Results[request.CurrentIndex].Title.Length > 33 ? request.Results[request.CurrentIndex].Title.Substring(0, 30) + "..." : request.Results[request.CurrentIndex].Title;
-                        builder.WithImageUrl(request.Results[request.CurrentIndex].CoverURL);
-                        builder.AddField(FixedTitle, request.Results[request.CurrentIndex].TorrentsAvailable + " Torrents available", false);
-                    }
-                components.WithButton(">", "MOVIE_SEARCH_NEXT", ButtonStyle.Secondary);
-                components.WithButton("CANCEL", "MOVIE_SEARCH_CANCEL", ButtonStyle.Danger);
+                (EmbedBuilder embedbuilder, ComponentBuilder componentbuilder) = request.GetResult();
                 GlobalRequests.SearchRequests.Add(request);
-                await ReplyAsync(User.Mention, embed: builder.Build(), components: components.Build());
+                await ReplyAsync(User.Mention, embed: embedbuilder.Build(), components: componentbuilder.Build());
             }
             catch (Exception ex)
             {
