@@ -62,5 +62,6 @@ namespace HTX_NINJA.Zooqle
         _Std,
         _Med,
         _Low,
+        _Unknown,
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Discord;
 using Discord.Commands;
+using Discord.Net;
 using Discord.WebSocket;
 using HTX_NINJA.Zooqle;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,6 +41,7 @@ namespace HTX_NINJA
             _client.Ready += _client_Ready;
             _client.ButtonExecuted += _client_ButtonExecuted;
             _client.SelectMenuExecuted += _client_SelectMenuExecuted;
+            _client.SlashCommandExecuted += _client_SlashCommandExecuted;
 
             string token = "";
             try { token = File.ReadAllText("token.txt"); } catch { Console.WriteLine("token.txt missing!"); }
@@ -59,6 +62,36 @@ namespace HTX_NINJA
             await _client.StartAsync();
 
             await Task.Delay(-1); // infinite wait
+        }
+
+        private async Task _client_SlashCommandExecuted(SocketSlashCommand arg)
+        {
+            Console.WriteLine(arg.CommandName + "  |  " + arg.Data.Options.First().Value);
+            switch (arg.CommandName)
+            {
+                case "search":
+                    var User = arg.User;
+                    try
+                    {
+                        await arg.DeferAsync();
+                        SearchRequest request = new SearchRequest(User);
+                        request.SearchForTorrent(arg.Data.Options.ToString());
+                        (EmbedBuilder embedbuilder, ComponentBuilder componentbuilder) = request.GetResult();
+                        GlobalRequests.SearchRequests.Add(request);
+
+                        MessageProperties edit = new MessageProperties()
+                        {
+                            Embed = embedbuilder.Build(),
+                            Components = componentbuilder.Build()
+                        };
+                        await arg.ModifyOriginalResponseAsync(x => x = edit);
+                    }
+                    catch (Exception ex)
+                    {
+                        await arg.ModifyOriginalResponseAsync(x => x.Content = ex.ToString());
+                    }
+                    break;
+            }
         }
 
         private async Task _client_SelectMenuExecuted(SocketMessageComponent arg)
@@ -97,7 +130,10 @@ namespace HTX_NINJA
                     {
                         request.NextResult();
                         (EmbedBuilder embedbuilder, ComponentBuilder componentbuilder) = request.GetResult();
-                        await arg.Message.ModifyAsync(x => x.Embed = embedbuilder.Build());
+                        if (embedbuilder != null)
+                            try { await arg.Message.ModifyAsync(x => x.Embed = embedbuilder.Build()); } catch { }
+                        if (componentbuilder != null)
+                            try { await arg.Message.ModifyAsync(x => x.Components = componentbuilder.Build()); } catch { }
                         try { await arg.RespondAsync(); } catch { }
                     }
                     break;
@@ -106,7 +142,10 @@ namespace HTX_NINJA
                     {
                         request.LastResult();
                         (EmbedBuilder embedbuilder, ComponentBuilder componentbuilder) = request.GetResult();
-                        await arg.Message.ModifyAsync(x => x.Embed = embedbuilder.Build());
+                        if (embedbuilder != null)
+                            try { await arg.Message.ModifyAsync(x => x.Embed = embedbuilder.Build()); } catch { }
+                        if (componentbuilder != null)
+                            try { await arg.Message.ModifyAsync(x => x.Components = componentbuilder.Build()); } catch { }
                         try { await arg.RespondAsync(); } catch { }
                     }
                     break;
@@ -127,11 +166,25 @@ namespace HTX_NINJA
             }
         }
 
-        private Task _client_Ready()
+        private async Task _client_Ready()
         {
             Console.WriteLine("Bot is online and working perfectly fine!");
             new Thread(RPC).Start(); // start the RPC messages
-            return Task.CompletedTask;
+
+            var globalCommand = new SlashCommandBuilder();
+            globalCommand.WithName("search");
+            globalCommand.WithDescription("Search for any Movie, Series, TV-Show and Anime!");
+            globalCommand.AddOption("name", ApplicationCommandOptionType.String, "The name of the Movie, Series, TV-Show or Anime:", true, false, true);
+
+            try
+            {
+                await _client.CreateGlobalApplicationCommandAsync(globalCommand.Build());
+            }
+            catch (ApplicationCommandException exception)
+            {
+                var json = JsonConvert.SerializeObject(exception.Errors, Formatting.Indented);
+                Console.WriteLine(json);
+            }
         }
 
         private Task _client_Log(LogMessage arg)

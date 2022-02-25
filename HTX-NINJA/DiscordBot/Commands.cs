@@ -7,6 +7,7 @@ using Discord.Commands;
 using Discord;
 using HTX_NINJA.TPB;
 using HTX_NINJA.Zooqle;
+using Discord.Interactions;
 
 namespace HTX_NINJA.DiscordBot
 {
@@ -33,13 +34,13 @@ namespace HTX_NINJA.DiscordBot
             await ReplyAsync(User.Mention, embed: builder.Build());
         }
 
-        [Command("zooqle")]
+        [Command("zoogle")]
         public async Task Search2([Remainder] string term)
         {
             var User = Context.User;
             try
             {
-                SearchRequest request = new SearchRequest(Context);
+                SearchRequest request = new SearchRequest(User);
                 request.SearchForTorrent(term);
                 (EmbedBuilder embedbuilder, ComponentBuilder componentbuilder) = request.GetResult();
                 GlobalRequests.SearchRequests.Add(request);

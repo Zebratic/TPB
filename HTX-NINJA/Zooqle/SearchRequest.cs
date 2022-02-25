@@ -15,19 +15,19 @@ namespace HTX_NINJA.Zooqle
     public class SearchRequest
     {
         public string BaseURL = "https://zooqle.com/";
-        public SocketCommandContext Context { get; set; }
+        public SocketUser User { get; set; }
         public IUserMessage Message { get; set; }
         public string Term { get; set; }
         public List<MovieInfo> Results { get; set; }
         public int CurrentIndex { get; set; }
-        public SearchRequest(SocketCommandContext _context)
+        public SearchRequest(SocketUser _user)
         {
-            Context = _context;
+            User = _user;
             CurrentIndex = 0;
             Results = new List<MovieInfo>();
         }
 
-        public static SearchRequest GetRequestFromUser(SocketUser _user) => GlobalRequests.SearchRequests.Find(x => x.Context.User.Id == _user.Id);
+        public static SearchRequest GetRequestFromUser(SocketUser _user) => GlobalRequests.SearchRequests.Find(x => x.User.Id == _user.Id);
     }
 
     public static class SearchRequestExtensions
@@ -82,9 +82,11 @@ namespace HTX_NINJA.Zooqle
                                     case "3D": _movie.Qualities.Add(Quality._3D); break;
                                     case "Ultra": _movie.Qualities.Add(Quality._Ultra); break;
                                     case "1080p": _movie.Qualities.Add(Quality._1080p); break;
+                                    case "720p": _movie.Qualities.Add(Quality._720p); break;
                                     case "Std": _movie.Qualities.Add(Quality._Std); break;
                                     case "Med": _movie.Qualities.Add(Quality._Med); break;
                                     case "Low": _movie.Qualities.Add(Quality._Low); break;
+                                    default: _movie.Qualities.Add(Quality._Unknown); break;
                                 }
                             }
                             catch { }
@@ -135,12 +137,10 @@ namespace HTX_NINJA.Zooqle
                     builder.WithThumbnailUrl("https://htx.ninja/web/favicon.png");
                     builder.WithImageUrl(movie.CoverURL);
                     builder.WithFooter($"HTX.NINJA | Zebratic#6969 | Result {_request.CurrentIndex + 1} of {_request.Results.Count}");
-
-                    // selecting quality: https://discordnet.dev/guides/int_basics/message-components/select-menus.html
                 }
 
                 var menuBuilder = new SelectMenuBuilder();
-                menuBuilder.WithPlaceholder("Select the quality");
+                menuBuilder.WithPlaceholder("Select a quality");
                 menuBuilder.WithCustomId("MENU_QUALITY");
                 menuBuilder.WithMinValues(1);
                 menuBuilder.WithMaxValues(1);
@@ -148,20 +148,20 @@ namespace HTX_NINJA.Zooqle
                 {
                     switch (quality)
                     {
-                        case Quality._3D: menuBuilder.AddOption("3D", "3D"); break;
-                        case Quality._Ultra: menuBuilder.AddOption("4K", "Ultra"); break;
-                        case Quality._1080p: menuBuilder.AddOption("1080", "1080p"); break;
-                        case Quality._720p: menuBuilder.AddOption("720", "720p"); break;
-                        case Quality._Std: menuBuilder.AddOption("High", "Std"); break;
-                        case Quality._Med: menuBuilder.AddOption("Medium", "Med"); break;
-                        case Quality._Low: menuBuilder.AddOption("Low", "Low"); break;
+                        case Quality._3D: menuBuilder.AddOption("3D (1080p - 2160p)", "3D"); break;
+                        case Quality._Ultra: menuBuilder.AddOption("2160p (4K)", "Ultra"); break;
+                        case Quality._1080p: menuBuilder.AddOption("1080p", "1080p"); break;
+                        case Quality._720p: menuBuilder.AddOption("720p", "720p"); break;
+                        case Quality._Std: menuBuilder.AddOption("High (480p - 720p)", "Std"); break;
+                        case Quality._Med: menuBuilder.AddOption("Medium (360p - 480p)", "Med"); break;
+                        case Quality._Low: menuBuilder.AddOption("Low (144p - 360p)", "Low"); break;
                     }
                 }
                     
 
                 components.WithSelectMenu(menuBuilder);
                 components.WithButton("<", "MOVIE_SEARCH_BACK", ButtonStyle.Secondary);
-                components.WithButton("SELECT", "MOVIE_SEARCH_SELECT", ButtonStyle.Success);
+                components.WithButton("DOWNLOAD", "MOVIE_SEARCH_DOWNLOAD", ButtonStyle.Success);
                 components.WithButton(">", "MOVIE_SEARCH_NEXT", ButtonStyle.Secondary);
                 components.WithButton("CANCEL", "MOVIE_SEARCH_CANCEL", ButtonStyle.Danger);
 
