@@ -167,6 +167,17 @@ namespace HTX_NINJA
                                 */
 
                                 TorrentInfo torrent = sortedtorrents.First();
+
+                                /*
+                                 * All needed now is:
+                                    - Torrent downloading
+                                    - Notify user when download is done (might not be added)
+                                    - Backup magnet to a txt file
+                                    - Add file size security check (above 10 gb, notify me)
+                                    - Calculate estimated time for download to finish
+                                 */
+
+
                                 // save torrent magnet in backup link
                                 // start torrent download using magnet
                                 // detect? when torrent done and ping/DM user with request.User
