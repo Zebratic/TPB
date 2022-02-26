@@ -4,27 +4,37 @@ using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading;
 
 namespace HTX_NINJA.Zooqle
 {
     public class GlobalRequests
     {
         public static List<SearchRequest> SearchRequests = new List<SearchRequest>();
+        public static string BaseURL = "https://zooqle.com/";
     }
 
     public class SearchRequest
     {
-        public string BaseURL = "https://zooqle.com/";
         public SocketUser User { get; set; }
-        public IUserMessage Message { get; set; }
         public string Term { get; set; }
         public List<MovieInfo> Results { get; set; }
         public int CurrentIndex { get; set; }
+        public DateTime LastInteraction { get; set; }
         public SearchRequest(SocketUser _user)
         {
             User = _user;
             CurrentIndex = 0;
             Results = new List<MovieInfo>();
+            LastInteraction = DateTime.UtcNow;
+            new Thread(CloseThread).Start();
+        }
+
+        public void CloseThread()
+        {
+            while ((LastInteraction + TimeSpan.FromMinutes(5)) > DateTime.UtcNow) { Thread.Sleep(1000); }
+
+            GlobalRequests.SearchRequests.Remove(this);
         }
 
         public static SearchRequest GetRequestFromUser(SocketUser _user) => GlobalRequests.SearchRequests.Find(x => x.User.Id == _user.Id);
@@ -32,14 +42,15 @@ namespace HTX_NINJA.Zooqle
 
     public static class SearchRequestExtensions
     {
-        public static void SearchForTorrent(this SearchRequest _request, string _term)
+        public static void SearchForMovie(this SearchRequest _request, string _term)
         {
+            _request.LastInteraction = DateTime.UtcNow;
             _request.Term = _term;
 
             using (WebClient wc = new WebClient())
             {
                 wc.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-                string html = wc.DownloadString(_request.BaseURL + "search?q=" + _term.Replace(" ", "+"));
+                string html = wc.DownloadString(GlobalRequests.BaseURL + "search?q=" + _term.Replace(" ", "+"));
 
                 string[] movies = html.Split(new[] { "<li title=\"", }, StringSplitOptions.None);
 
@@ -47,19 +58,19 @@ namespace HTX_NINJA.Zooqle
                 {
                     MovieInfo movie = new MovieInfo();
                     movie.Title = movies[i].Split(new[] { "\">" }, StringSplitOptions.None)[0];
-                    movie.URL = _request.BaseURL + movies[i].Split(new[] { "href=\"/" }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0];
-                    try { movie.CoverURL = _request.BaseURL + movies[i].Split(new[] { "src=\"/" }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0].Replace("2.jpg", "0.jpg"); } catch { }
+                    movie.URL = GlobalRequests.BaseURL + movies[i].Split(new[] { "href=\"/" }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0];
+                    try { movie.CoverURL = GlobalRequests.BaseURL + movies[i].Split(new[] { "src=\"/" }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0].Replace("2.jpg", "0.jpg"); } catch { }
                     string torrentsavailable_string = movies[i].Split(new[] { "\"></i> " }, StringSplitOptions.None)[1].Split(new[] { " torrents" }, StringSplitOptions.None)[0];
                     movie.TorrentsAvailable = -1;
                     try { movie.TorrentsAvailable = Convert.ToInt32(torrentsavailable_string); } catch { }
-                    try { movie.GetDetailedInfo(); } catch { }
+                    try { movie.GetMovieInfo(true, false); } catch { }
                     if (movie.TorrentsAvailable > 0 || movie.TorrentsAvailable == -1)
                         _request.Results.Add(movie);
                 }
             }
         }
 
-        public static void GetDetailedInfo(this MovieInfo _movie)
+        public static void GetMovieInfo(this MovieInfo _movie, bool GetQuality, bool GetTorrents, Quality qualitySpecific = Quality._Unknown)
         {
             try
             {
@@ -69,28 +80,84 @@ namespace HTX_NINJA.Zooqle
                     {
                         wc.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
                         string html = wc.DownloadString(_movie.URL);
-                        string[] qualities = html.Split(new[] { "<tr style=\"border: none !important;\">", }, StringSplitOptions.None);
 
+                        string[] qualities = html.Split(new[] { "<tr style=\"border: none !important;\">", }, StringSplitOptions.None);
                         for (int i = 1; i < qualities.Length - 1; i++)
                         {
-                            try
+                            if (GetQuality) // Get Qualities
                             {
-                                string quality = qualities[i].Split(new[] { "\"></i> " }, StringSplitOptions.None)[1].Split(new[] { "</span>" }, StringSplitOptions.None)[0];
-                                Console.WriteLine(_movie.URL + " | " + quality);
-                                switch (quality)
+                                try
                                 {
-                                    case "3D": _movie.Qualities.Add(Quality._3D); break;
-                                    case "Ultra": _movie.Qualities.Add(Quality._Ultra); break;
-                                    case "1080p": _movie.Qualities.Add(Quality._1080p); break;
-                                    case "720p": _movie.Qualities.Add(Quality._720p); break;
-                                    case "Std": _movie.Qualities.Add(Quality._Std); break;
-                                    case "Med": _movie.Qualities.Add(Quality._Med); break;
-                                    case "Low": _movie.Qualities.Add(Quality._Low); break;
-                                    default: _movie.Qualities.Add(Quality._Unknown); break;
+                                    string quality = qualities[i].Split(new[] { "\"></i> " }, StringSplitOptions.None)[1].Split(new[] { "</span>" }, StringSplitOptions.None)[0];
+                                    Console.WriteLine(_movie.Title + " | " + quality);
+                                    switch (quality)
+                                    {
+                                        case "3D": _movie.Qualities.Add(Quality._3D); break;
+                                        case "Ultra": _movie.Qualities.Add(Quality._Ultra); break;
+                                        case "1080p": _movie.Qualities.Add(Quality._1080p); break;
+                                        case "720p": _movie.Qualities.Add(Quality._720p); break;
+                                        case "Std": _movie.Qualities.Add(Quality._Std); break;
+                                        case "Med": _movie.Qualities.Add(Quality._Med); break;
+                                        case "Low": _movie.Qualities.Add(Quality._Low); break;
+                                        default: _movie.Qualities.Add(Quality._Unknown); break;
+                                    }
+                                }
+                                catch (Exception ex) { Console.WriteLine(ex); }
+                            }
+
+                            if (GetTorrents) // Get Torrents
+                            {
+                                string quality_name = qualities[i].Split(new[] { "\"></i> " }, StringSplitOptions.None)[1].Split(new[] { "</span>" }, StringSplitOptions.None)[0];
+                                string quality_tag = qualities[i].Split(new[] { "href=\"" }, StringSplitOptions.None)[1].Split(new[] { "\"><span " }, StringSplitOptions.None)[0];
+                                Quality quality = Quality._Undefined;
+                                switch (quality_name)
+                                {
+                                    case "3D": quality = Quality._3D;  break;
+                                    case "Ultra": quality = Quality._Ultra; break;
+                                    case "1080p": quality = Quality._1080p; break;
+                                    case "720p": quality = Quality._720p; break;
+                                    case "Std": quality = Quality._Std; break;
+                                    case "Med": quality = Quality._Med; break;
+                                    case "Low": quality = Quality._Low; break;
+                                    default: quality = Quality._Unknown; break;
+                                }
+
+                                if (qualitySpecific == Quality._Unknown || quality == qualitySpecific)
+                                {
+                                    wc.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+                                    string torrentlisthtml = wc.DownloadString(_movie.URL + quality_tag);
+                                    string[] torrents = torrentlisthtml.Split(new[] { "<tr>", }, StringSplitOptions.None);
+                                    for (int i2 = 1; i2 < torrents.Length; i2++)
+                                    {
+                                        try
+                                        {
+                                            TorrentInfo torrent = new TorrentInfo();
+                                            torrent.Quality = quality;
+                                            string htmlpath = torrents[i2].Split(new[] { "href=\"/" }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0];
+                                            torrent.URL = GlobalRequests.BaseURL + htmlpath;
+                                            torrent.Title = torrents[i2].Split(new[] { $"{htmlpath}\">" }, StringSplitOptions.None)[1].Split(new[] { "</a>" }, StringSplitOptions.None)[0];
+                                            wc.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+                                            string torrent_html = wc.DownloadString(torrent.URL);
+                                            torrent.Magnet = "magnet:?" + torrent_html.Split(new[] { "href=\"magnet:?" }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0];
+
+                                            try
+                                            {
+                                                string infosection = torrent_html.Split(new[] { "<h6>" }, StringSplitOptions.None)[1].Split(new[] { "</h6>" }, StringSplitOptions.None)[0];
+                                                try { torrent.Seeders = Convert.ToInt32(infosection.Split(new[] { "title=\"Seeders: " }, StringSplitOptions.None)[1].Split(' ')[0]); } catch { }
+                                                try { torrent.Leechers = Convert.ToInt32(infosection.Split(new[] { " | Leechers: " }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0]); } catch { }
+                                                try { torrent.FileSize = infosection.Split(new[] { "title=\"File size\"></i>" }, StringSplitOptions.None)[1].Split(new[] { "<span" }, StringSplitOptions.None)[0]; } catch { }
+                                                try { torrent.UploadDate = infosection.Split(new[] { "title=\"Date indexed\"></i>" }, StringSplitOptions.None)[1].Split(new[] { "<span" }, StringSplitOptions.None)[0]; } catch { }
+                                            }
+                                            catch { }
+
+                                            _movie.Torrents.Add(torrent);
+                                            Console.WriteLine($"Q: {torrent.Quality} S: {torrent.Seeders} L: {torrent.Leechers} F: {torrent.FileSize}");
+                                        }
+                                        catch { }
+                                    }
                                 }
                             }
-                            catch { }
-                            
+
                             i++;
                         }
                     }
@@ -104,6 +171,7 @@ namespace HTX_NINJA.Zooqle
 
         public static void NextResult(this SearchRequest _request)
         {
+            _request.LastInteraction = DateTime.UtcNow;
             _request.CurrentIndex++;
             if (_request.CurrentIndex == _request.Results.Count)
                 _request.CurrentIndex = 0;
@@ -111,6 +179,7 @@ namespace HTX_NINJA.Zooqle
 
         public static void LastResult(this SearchRequest _request)
         {
+            _request.LastInteraction = DateTime.UtcNow;
             _request.CurrentIndex--;
             if (_request.CurrentIndex < 0)
                 _request.CurrentIndex = _request.Results.Count - 1;
@@ -120,6 +189,7 @@ namespace HTX_NINJA.Zooqle
 
         public static (EmbedBuilder, ComponentBuilder) GetResult(this SearchRequest _request)
         {
+            _request.LastInteraction = DateTime.UtcNow;
             var components = new ComponentBuilder();
             EmbedBuilder builder = new EmbedBuilder();
 

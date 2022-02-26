@@ -71,24 +71,19 @@ namespace HTX_NINJA
             {
                 case "search":
                     var User = arg.User;
+                    await arg.DeferAsync(true);
                     try
                     {
-                        await arg.DeferAsync();
                         SearchRequest request = new SearchRequest(User);
-                        request.SearchForTorrent(arg.Data.Options.ToString());
+                        request.SearchForMovie(arg.Data.Options.First().Value.ToString());
                         (EmbedBuilder embedbuilder, ComponentBuilder componentbuilder) = request.GetResult();
                         GlobalRequests.SearchRequests.Add(request);
-
-                        MessageProperties edit = new MessageProperties()
-                        {
-                            Embed = embedbuilder.Build(),
-                            Components = componentbuilder.Build()
-                        };
-                        await arg.ModifyOriginalResponseAsync(x => x = edit);
+                        await arg.FollowupAsync(embed: embedbuilder.Build(), components: componentbuilder.Build());
                     }
                     catch (Exception ex)
                     {
-                        await arg.ModifyOriginalResponseAsync(x => x.Content = ex.ToString());
+                        Console.WriteLine(ex.ToString());
+                        await arg.FollowupAsync(ex.ToString());
                     }
                     break;
             }
@@ -122,47 +117,107 @@ namespace HTX_NINJA
 
         private async Task _client_ButtonExecuted(SocketMessageComponent arg)
         {
-            SearchRequest request = SearchRequest.GetRequestFromUser(arg.User);
-            switch (arg.Data.CustomId)
+            try
             {
-                case "MOVIE_SEARCH_NEXT":
-                    if (request != null)
-                    {
-                        request.NextResult();
-                        (EmbedBuilder embedbuilder, ComponentBuilder componentbuilder) = request.GetResult();
-                        if (embedbuilder != null)
-                            try { await arg.Message.ModifyAsync(x => x.Embed = embedbuilder.Build()); } catch { }
-                        if (componentbuilder != null)
-                            try { await arg.Message.ModifyAsync(x => x.Components = componentbuilder.Build()); } catch { }
-                        try { await arg.RespondAsync(); } catch { }
-                    }
-                    break;
-                case "MOVIE_SEARCH_BACK":
-                    if (request != null)
-                    {
-                        request.LastResult();
-                        (EmbedBuilder embedbuilder, ComponentBuilder componentbuilder) = request.GetResult();
-                        if (embedbuilder != null)
-                            try { await arg.Message.ModifyAsync(x => x.Embed = embedbuilder.Build()); } catch { }
-                        if (componentbuilder != null)
-                            try { await arg.Message.ModifyAsync(x => x.Components = componentbuilder.Build()); } catch { }
-                        try { await arg.RespondAsync(); } catch { }
-                    }
-                    break;
-                case "MOVIE_SEARCH_DOWNLOAD":
-                    if (request != null)
-                    {
-                        // download movie with selected quality
-                        try { await arg.RespondAsync(); } catch { }
-                    }
-                    break;
-                case "MOVIE_SEARCH_CANCEL":
-                    if (request != null)
-                    {
-                        GlobalRequests.SearchRequests.Remove(request);
-                        try { await arg.Message.DeleteAsync(); } catch { }
-                    }
-                    break;
+                SearchRequest request = SearchRequest.GetRequestFromUser(arg.User);
+                Console.WriteLine(arg.Data.CustomId);
+                switch (arg.Data.CustomId)
+                {
+                    case "MOVIE_SEARCH_NEXT":
+                        if (request != null)
+                        {
+                            request.NextResult();
+                            (EmbedBuilder embedbuilder, ComponentBuilder componentbuilder) = request.GetResult();
+                            if (embedbuilder != null)
+                                try { await arg.UpdateAsync(x => x.Embed = embedbuilder.Build()); } catch { }
+                            if (componentbuilder != null)
+                                try { await arg.UpdateAsync(x => x.Components = componentbuilder.Build()); } catch { }
+                        }
+                        break;
+                    case "MOVIE_SEARCH_BACK":
+                        if (request != null)
+                        {
+                            request.LastResult();
+                            (EmbedBuilder embedbuilder, ComponentBuilder componentbuilder) = request.GetResult();
+                            if (embedbuilder != null)
+                                try { await arg.UpdateAsync(x => x.Embed = embedbuilder.Build()); } catch { }
+                            if (componentbuilder != null)
+                                try { await arg.UpdateAsync(x => x.Components = componentbuilder.Build()); } catch { }
+                        }
+                        break;
+                    case "MOVIE_SEARCH_DOWNLOAD":
+                        if (request != null)
+                        {
+                            try
+                            {
+                                await arg.DeferLoadingAsync(true);
+                                MovieInfo selectedmovie = request.GetCurrentMovie();
+                                Console.WriteLine(selectedmovie.URL);
+                                selectedmovie.Torrents = new List<TorrentInfo>(); // clear last results if any
+                                try { selectedmovie.GetMovieInfo(true, true, selectedmovie.SelectedQuality); } catch { }
+
+                                List<TorrentInfo> sortedtorrents = selectedmovie.Torrents.OrderByDescending(o => o.Seeders).ToList();
+
+                                /* // LOGGING
+                                foreach (TorrentInfo torrent in sortedtorrents)
+                                {
+                                    Console.WriteLine($"[TORRENT] " + torrent.Title.PadRight(65) + $" | {torrent.Seeders} Seeds ".PadRight(15) + $" | {torrent.Leechers} Leeches ".PadRight(15) + $"| {torrent.FileSize}"); ;
+                                    // set torrent.magnet to download queue
+                                }
+                                */
+
+                                TorrentInfo torrent = sortedtorrents.First();
+                                // save torrent magnet in backup link
+                                // start torrent download using magnet
+                                // detect? when torrent done and ping/DM user with request.User
+                                //if (torrent.FileSize > 10 GB)
+                                //        notify myself if its alright
+
+                                EmbedBuilder embedBuilder = new EmbedBuilder();
+                                embedBuilder.WithTitle($"{selectedmovie.Title} is now being downloaded!");
+                                embedBuilder.AddField("Quality", torrent.Quality.GetQualityString(), true);
+                                embedBuilder.AddField("File Size", torrent.FileSize, true);
+                                embedBuilder.AddField("Upload Date", torrent.UploadDate, true);
+                                embedBuilder.AddField("Seeders", torrent.Seeders, true);
+                                embedBuilder.AddField("Leechers", torrent.Leechers, true);
+                                embedBuilder.AddField("ETA", "CALCULATE TIME HERE", true);
+                                embedBuilder.WithThumbnailUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Eo_circle_light-green_checkmark.svg/2048px-Eo_circle_light-green_checkmark.svg.png");
+                                embedBuilder.WithFooter($"HTX.NINJA | Zebratic#6969");
+                                try { await arg.FollowupAsync(embed: embedBuilder.Build()); } catch (Exception ex) { Console.WriteLine(ex); }
+                                GlobalRequests.SearchRequests.Remove(request);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex);
+                            }
+                        }
+                        break;
+                    case "MOVIE_SEARCH_CANCEL":
+                        if (request != null)
+                        {
+                            try
+                            {
+                                await arg.DeferLoadingAsync(true);
+                                GlobalRequests.SearchRequests.Remove(request);
+                                EmbedBuilder embedBuilder = new EmbedBuilder();
+                                embedBuilder.WithTitle("Search has been cancelled!");
+                                embedBuilder.WithDescription("You can now dismiss the message.");
+                                embedBuilder.WithThumbnailUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Eo_circle_light-green_checkmark.svg/2048px-Eo_circle_light-green_checkmark.svg.png");
+                                embedBuilder.WithFooter($"HTX.NINJA | Zebratic#6969");
+                                try { await arg.UpdateAsync(x => x.Embed = embedBuilder.Build()); } catch (Exception ex) { Console.WriteLine(ex); }
+                                // delete msg if possible
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex);
+                            }
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
 
@@ -174,7 +229,7 @@ namespace HTX_NINJA
             var globalCommand = new SlashCommandBuilder();
             globalCommand.WithName("search");
             globalCommand.WithDescription("Search for any Movie, Series, TV-Show and Anime!");
-            globalCommand.AddOption("name", ApplicationCommandOptionType.String, "The name of the Movie, Series, TV-Show or Anime:", true, false, true);
+            globalCommand.AddOption("name", ApplicationCommandOptionType.String, "The name of the Movie, Series, TV-Show or Anime:", true, false, false);
 
             try
             {

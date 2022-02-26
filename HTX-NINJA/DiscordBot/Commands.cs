@@ -28,7 +28,7 @@ namespace HTX_NINJA.DiscordBot
                 string Description = $"{torrent.ContentSize}{torrent.MeasureUnit}\n{torrent.Seeds} Seeders\n{torrent.Leeches} Leechers";
 
                 builder.AddField(FixedTitle, Description, true);
-                Console.WriteLine($"[TORRENT]" + FixedTitle.PadRight(65) + $" | {torrent.Seeds} Seeds ".PadRight(15) + $" | {torrent.Leeches} Leeches ".PadRight(15) + $"| {torrent.ContentSize} {torrent.MeasureUnit}"); ;
+                Console.WriteLine($"[TORRENT] " + FixedTitle.PadRight(65) + $" | {torrent.Seeds} Seeds ".PadRight(15) + $" | {torrent.Leeches} Leeches ".PadRight(15) + $"| {torrent.ContentSize} {torrent.MeasureUnit}"); ;
             }
                
             await ReplyAsync(User.Mention, embed: builder.Build());
@@ -41,7 +41,7 @@ namespace HTX_NINJA.DiscordBot
             try
             {
                 SearchRequest request = new SearchRequest(User);
-                request.SearchForTorrent(term);
+                request.SearchForMovie(term);
                 (EmbedBuilder embedbuilder, ComponentBuilder componentbuilder) = request.GetResult();
                 GlobalRequests.SearchRequests.Add(request);
                 await ReplyAsync(User.Mention, embed: embedbuilder.Build(), components: componentbuilder.Build());
