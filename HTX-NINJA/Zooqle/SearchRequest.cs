@@ -228,8 +228,7 @@ namespace HTX_NINJA.Zooqle
                         case Quality._Low: menuBuilder.AddOption("Low (144p - 360p)", "Low"); break;
                     }
                 }
-                    
-
+                
                 components.WithSelectMenu(menuBuilder);
                 components.WithButton("<", "MOVIE_SEARCH_BACK", ButtonStyle.Secondary);
                 components.WithButton("DOWNLOAD", "MOVIE_SEARCH_DOWNLOAD", ButtonStyle.Success);
