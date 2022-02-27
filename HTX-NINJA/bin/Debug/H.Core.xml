@@ -1,0 +1,2755 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>H.Core</name>
+    </assembly>
+    <members>
+        <member name="T:H.Core.AsyncEventHandler`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEventArgs"></typeparam>
+            <param name="sender"></param>
+            <param name="args"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.AsyncEventHandler`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEventArgs"></typeparam>
+            <typeparam name="TTaskType"></typeparam>
+            <param name="sender"></param>
+            <param name="args"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.AsyncEventHandlerExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.AsyncEventHandlerExtensions.InvokeAsync``1(H.Core.AsyncEventHandler{``0},System.Object,``0,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEventArgs"></typeparam>
+            <param name="handlers"></param>
+            <param name="source"></param>
+            <param name="args"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.AsyncEventHandlerExtensions.InvokeAsync``2(H.Core.AsyncEventHandler{``0,``1},System.Object,``0,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEventArgs"></typeparam>
+            <typeparam name="TTaskType"></typeparam>
+            <param name="handlers"></param>
+            <param name="source"></param>
+            <param name="args"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Attributes.AllowMultipleInstanceAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Attributes.AllowMultipleInstanceAttribute.AutoCreateInstance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Attributes.AllowMultipleInstanceAttribute.#ctor(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="autoCreateInstance"></param>
+        </member>
+        <member name="T:H.Core.AudioFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:H.Core.AudioFormat.Raw">
+            <summary>
+            RAW - without header.
+            </summary>
+        </member>
+        <member name="F:H.Core.AudioFormat.Wav">
+            <summary>
+            WAV.
+            </summary>
+        </member>
+        <member name="F:H.Core.AudioFormat.Mp3">
+            <summary>
+            MP3.
+            </summary>
+        </member>
+        <member name="F:H.Core.AudioFormat.Ogg">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.AudioSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.AudioSettings.Parse(System.String)">
+            <summary>
+            Parse strings like: <br/>
+            <value>(raw, 16000, 16, 1)</value> -> Format = Raw, Rate = 16000, Bits = 16, Channels = 1. <br/>
+            <value>(wav)</value> -> Format = Wav, Rate = 8000, Bits = 16, Channels = 1. <br/>
+            <value>raw</value> -> Format = Raw, Rate = 8000, Bits = 16, Channels = 1. <br/>
+            <value>()</value> -> Format = Raw, Rate = 8000, Bits = 16, Channels = 1. <br/>
+            <value></value> -> Format = Raw, Rate = 8000, Bits = 16, Channels = 1. <br/>
+            </summary>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="P:H.Core.AudioSettings.Format">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.AudioSettings.Rate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.AudioSettings.Bits">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.AudioSettings.Channels">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.AudioSettings.Delay">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.AudioSettings.#ctor(H.Core.AudioFormat,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="format"></param>
+            <param name="rate"></param>
+            <param name="bits"></param>
+            <param name="channels"></param>
+        </member>
+        <member name="M:H.Core.AudioSettings.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Command">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Command.Empty">
+            <summary>
+            Empty command.
+            </summary>
+        </member>
+        <member name="M:H.Core.Command.Parse(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="P:H.Core.Command.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Command.Input">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Command.Output">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Command.IsEmpty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Command.#ctor(System.String[])">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Command.#ctor(System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="arguments"></param>
+        </member>
+        <member name="M:H.Core.Command.#ctor(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:H.Core.Command.#ctor(System.String,System.Byte[],System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="data"></param>
+            <param name="arguments"></param>
+        </member>
+        <member name="M:H.Core.Command.#ctor(System.String,H.Core.IValue,H.Core.IValue)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="input"></param>
+            <param name="output"></param>
+        </member>
+        <member name="M:H.Core.Command.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.CommandExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.CommandExtensions.WithMergedInput(H.Core.ICommand,H.Core.IValue)">
+            <summary>
+            Returns original command, where <see cref="P:H.Core.ICommand.Input"/> contains
+            concatenated <see cref="P:H.Core.IValue.Arguments"/> and <seealso cref="P:H.Core.IValue.Data"/>.
+            </summary>
+            <param name="command"></param>
+            <param name="value"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.CommandExtensions.WithOutput(H.Core.ICommand,H.Core.IValue)">
+            <summary>
+            Returns original command, where <see cref="P:H.Core.ICommand.Output"/> contains
+            concatenated <see cref="P:H.Core.IValue.Arguments"/> and <seealso cref="P:H.Core.IValue.Data"/>.
+            </summary>
+            <param name="command"></param>
+            <param name="value"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:H.Core.Extensions.ModuleExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Extensions.ModuleExtensions.AllowMultipleInstance(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Extensions.ModuleExtensions.AllowMultipleInstance(H.Core.IModule)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Extensions.ModuleExtensions.AutoCreateInstance(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Extensions.ModuleExtensions.AutoCreateInstance(H.Core.IModule)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.ICommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.ICommand.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.ICommand.Input">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.ICommand.Output">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.ICommand.IsEmpty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.IModule">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.IModule.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.IModule.ShortName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.IModule.UniqueName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.IModule.IsRegistered">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.IModule.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.IModule.Settings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.IModule.CommandReceived">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.IModule.AsyncCommandReceived">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.IModule.ExceptionOccurred">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.IModule.GetAvailableSettings">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.IModule.SetSetting(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:H.Core.IModule.GetSetting(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.IModule.IsValid">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.IModule.GetSupportedVariables">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.IModule.GetModuleVariableValue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.IProcess">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.IProcess.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            Stops process and waits completion.
+            </summary>
+        </member>
+        <member name="M:H.Core.IProcess.WaitAsync(System.Threading.CancellationToken)">
+            <summary>
+            Waits stop call.
+            </summary>
+        </member>
+        <member name="M:H.Core.IProcess.Initialize(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Initialize process.
+            </summary>
+        </member>
+        <member name="T:H.Core.IProcess`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.IProcess`1.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            Stops process and waits completion.
+            </summary>
+        </member>
+        <member name="M:H.Core.IProcess`1.WaitAsync(System.Threading.CancellationToken)">
+            <summary>
+            Waits stop call.
+            </summary>
+        </member>
+        <member name="M:H.Core.IProcess`1.Initialize(System.Func{System.Threading.Tasks.Task{`0}},System.Threading.CancellationToken)">
+            <summary>
+            Initialize process.
+            </summary>
+        </member>
+        <member name="T:H.Core.IValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.IValue.Arguments">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.IValue.Argument">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.IValue.Data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.IValue.IsEmpty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Key">
+            <summary>
+            https://github.com/tpn/winsdk-10/blob/master/Include/10.0.10240.0/um/WinUser.h#L437
+            </summary>
+        </member>
+        <member name="M:H.Core.KeyExtensions.Parse(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.KeyExtensions.ToFixedString(H.Core.Key)">
+            <summary>
+            Returns fixed name if multiple enumeration members have the same underlying value.
+            </summary>
+            <param name="key"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Keys">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Keys.Parse(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Keys.FromSpecialData(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="P:H.Core.Keys.Values">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Keys.IsRightCtrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Keys.IsRightAlt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Keys.IsRightShift">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Keys.IsLeftCtrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Keys.IsLeftAlt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Keys.IsLeftShift">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Keys.IsAlt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Keys.IsCtrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Keys.IsShift">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Keys.IsEmpty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Keys.#ctor(H.Core.Key[])">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+        </member>
+        <member name="M:H.Core.Keys.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Keys.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Keys.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Module">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Module.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Module.ShortName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Module.UniqueName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Module.IsRegistered">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Module.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Module.Settings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Module.IsValid">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:H.Core.Module.Variables">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Module.GetSupportedVariables">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Module.AddVariable(System.String,System.Func{System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:H.Core.Module.GetModuleVariableValue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="E:H.Core.Module.CommandReceived">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Module.AsyncCommandReceived">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Module.OnCommandReceived(H.Core.ICommand)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:H.Core.Module.OnAsyncCommandReceivedAsync(H.Core.ICommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="E:H.Core.Module.ExceptionOccurred">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Module.OnExceptionOccurred(System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:H.Core.Module.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Module.Run(System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="arguments"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.Module.Run(H.Core.ICommand)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.Module.RunAsync(H.Core.ICommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Module.GetAvailableSettings">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Module.SetSetting(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:H.Core.Module.GetSetting(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Module.AddSetting``1(System.String,System.Action{``0},System.Func{``0,System.Boolean},``0,H.Core.Settings.SettingType)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="setAction"></param>
+            <param name="checkFunc"></param>
+            <param name="defaultValue"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:H.Core.Module.AddEnumerableSetting``1(System.String,System.Action{``0},System.Func{``0,System.Boolean},``0[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="setAction"></param>
+            <param name="checkFunc"></param>
+            <param name="defaultValues"></param>
+        </member>
+        <member name="M:H.Core.Module.IsNull(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Module.NoEmpty(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Module.Any``1(``0)">
+            <summary>
+            
+            </summary>
+            <param name="_"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Module.IsNull(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Module.Positive(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Module.Negative(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Module.NotNegative(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Module.NotPositive(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Module.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.ModuleExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.ModuleExtensions.SayAsync(H.Core.Module,System.String,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+            <param name="text"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.ModuleExtensions.Say(H.Core.Module,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.ModuleExtensions.Print(H.Core.Module,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.ModuleExtensions.ShowSettings(H.Core.Module)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.ModuleExtensions.Enable(H.Core.Module)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.ModuleExtensions.Disable(H.Core.Module)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:H.Core.Notifiers.INotifier">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Notifiers.INotifier.Command">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Notifiers.INotifier.EventOccurred">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Notifiers.Notifier">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Notifiers.Notifier.Command">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Notifiers.Notifier.CommandFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Notifiers.Notifier.EventOccurred">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Notifiers.Notifier.OnEventOccurred">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Notifiers.Notifier.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Players.IPlayer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Players.IPlayer.SupportedSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Players.IPlayer.PlayAsync(System.Byte[],H.Core.AudioSettings,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="bytes"></param>
+            <param name="settings"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Players.Player">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Players.Player.SupportedSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Players.Player.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Players.Player.PlayAsync(System.Byte[],H.Core.AudioSettings,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="bytes"></param>
+            <param name="settings"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Process">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Process.Exceptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Process.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Process.Initialize(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="func"></param>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="M:H.Core.Process.WaitAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Process`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Process`1.Exceptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Process`1.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Process`1.Initialize(System.Func{System.Threading.Tasks.Task{`0}},System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="func"></param>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="M:H.Core.Process`1.WaitAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Recognizers.IRecognizer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recognizers.IRecognizer.SupportedSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recognizers.IRecognizer.SupportedStreamingSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recognizers.IRecognizer.ConvertAsync(System.Byte[],H.Core.AudioSettings,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="bytes"></param>
+            <param name="settings"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Recognizers.IRecognizer.StartStreamingRecognitionAsync(H.Core.AudioSettings,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="settings"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Recognizers.IStreamingRecognition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recognizers.IStreamingRecognition.Settings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recognizers.IStreamingRecognition.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Recognizers.IStreamingRecognition.Stopping">
+            <summary>
+            Before <see cref="M:H.Core.Recognizers.IStreamingRecognition.StopAsync(System.Threading.CancellationToken)"/> call.
+            </summary>
+        </member>
+        <member name="E:H.Core.Recognizers.IStreamingRecognition.Stopped">
+            <summary>
+            After <see cref="M:H.Core.Recognizers.IStreamingRecognition.StopAsync(System.Threading.CancellationToken)"/> call.
+            </summary>
+        </member>
+        <member name="E:H.Core.Recognizers.IStreamingRecognition.PreviewReceived">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recognizers.IStreamingRecognition.WriteAsync(System.Byte[],System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="bytes"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Recognizers.IStreamingRecognition.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Recognizers.Recognizer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recognizers.Recognizer.SupportedSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recognizers.Recognizer.SupportedStreamingSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recognizers.Recognizer.ConvertAsync(System.Byte[],H.Core.AudioSettings,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="bytes"></param>
+            <param name="settings"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Recognizers.Recognizer.StartStreamingRecognitionAsync(H.Core.AudioSettings,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="settings"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Recognizers.StreamingRecognition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recognizers.StreamingRecognition.Settings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recognizers.StreamingRecognition.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Recognizers.StreamingRecognition.Stopping">
+            <summary>
+            Before <see cref="M:H.Core.Recognizers.StreamingRecognition.StopAsync(System.Threading.CancellationToken)"/> call.
+            </summary>
+        </member>
+        <member name="E:H.Core.Recognizers.StreamingRecognition.Stopped">
+            <summary>
+            After <see cref="M:H.Core.Recognizers.StreamingRecognition.StopAsync(System.Threading.CancellationToken)"/> call.
+            </summary>
+        </member>
+        <member name="E:H.Core.Recognizers.StreamingRecognition.PreviewReceived">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recognizers.StreamingRecognition.OnStopping">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recognizers.StreamingRecognition.OnStopped(System.String)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recognizers.StreamingRecognition.OnPreviewReceived(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:H.Core.Recognizers.StreamingRecognition.#ctor(H.Core.AudioSettings)">
+            <summary>
+            
+            </summary>
+            <param name="settings"></param>
+        </member>
+        <member name="M:H.Core.Recognizers.StreamingRecognition.WriteAsync(System.Byte[],System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="bytes"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Recognizers.StreamingRecognition.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Recognizers.StreamingRecognition.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Recognizers.StreamingRecognitionExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recognizers.StreamingRecognitionExtensions.BindRecordingAsync(H.Core.Recognizers.IStreamingRecognition,H.Core.Recorders.IRecording,H.Core.Utilities.ExceptionsBag,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="recognition"></param>
+            <param name="recording"></param>
+            <param name="exceptionsBag"></param>
+            <param name="cancellationToken"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Recognizers.StreamingRecognitionExtensions.StartStreamingRecognitionAsync(H.Core.Recognizers.IRecognizer,H.Core.Recorders.IRecorder,H.Core.Utilities.ExceptionsBag,System.Threading.CancellationToken)">
+            <summary>
+            Dispose is required!.
+            </summary>
+            <param name="recognizer"></param>
+            <param name="recorder"></param>
+            <param name="exceptionsBag"></param>
+            <param name="cancellationToken"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Recognizers.StreamingRecognitionExtensions.StartStreamingRecognitionAsync(H.Core.Recognizers.IRecognizer,H.Core.Recorders.IRecorder,H.Core.Process,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="recognizer"></param>
+            <param name="recorder"></param>
+            <param name="process"></param>
+            <param name="cancellationToken"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Recognizers.StreamingRecognitionExtensions.ConvertOverStreamingRecognition(H.Core.Recognizers.IRecognizer,System.Byte[],H.Core.AudioSettings,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="recognizer"></param>
+            <param name="bytes"></param>
+            <param name="settings"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Recognizers.StreamingRecognitionExtensions.WaitStopAsync(H.Core.Recognizers.IStreamingRecognition,System.Threading.CancellationToken)">
+            <summary>
+            Waits <seealso cref="E:H.Core.Recognizers.IStreamingRecognition.Stopped"/> events. <br/>
+            Can be used with <seealso cref="M:H.Core.Recorders.RecordingExtensions.StopWhenSilence(H.Core.Recorders.IRecording,System.Int32,System.Int32,System.Double,H.Core.Utilities.ExceptionsBag)"/> extension.
+            </summary>
+            <param name="recognition"></param>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="T:H.Core.Recorders.IRecorder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recorders.IRecorder.SupportedSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Recorders.IRecorder.Started">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Recorders.IRecorder.Stopped">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recorders.IRecorder.StartAsync(H.Core.AudioSettings,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="settings"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Recorders.IRecording">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recorders.IRecording.Settings">
+            <summary>
+            AudioSettings.
+            </summary>
+        </member>
+        <member name="P:H.Core.Recorders.IRecording.Data">
+            <summary>
+            Data.
+            </summary>
+        </member>
+        <member name="P:H.Core.Recorders.IRecording.Header">
+            <summary>
+            Header bytes.
+            </summary>
+        </member>
+        <member name="E:H.Core.Recorders.IRecording.Stopped">
+            <summary>
+            After <see cref="M:H.Core.Recorders.IRecording.StopAsync(System.Threading.CancellationToken)"/> call.
+            </summary>
+        </member>
+        <member name="E:H.Core.Recorders.IRecording.Disposed">
+            <summary>
+            After <see cref="M:System.IDisposable.Dispose"/> call.
+            </summary>
+        </member>
+        <member name="E:H.Core.Recorders.IRecording.DataReceived">
+            <summary>
+            Raw data received.
+            </summary>
+        </member>
+        <member name="M:H.Core.Recorders.IRecording.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            Stops recording.
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Recorders.Recorder">
+            <summary>
+            /
+            </summary>
+        </member>
+        <member name="P:H.Core.Recorders.Recorder.SupportedSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Recorders.Recorder.Started">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Recorders.Recorder.Stopped">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recorders.Recorder.OnStarted(H.Core.Recorders.IRecording)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recorders.Recorder.OnStopped(H.Core.Recorders.IRecording)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recorders.Recorder.StartAsync(H.Core.AudioSettings,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="settings"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Recorders.RecorderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recorders.RecorderExtensions.StartWithTimeoutAsync(H.Core.Recorders.IRecorder,System.TimeSpan,H.Core.AudioSettings,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="recorder"></param>
+            <param name="timeout"></param>
+            <param name="settings"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Recorders.Recording">
+            <summary>
+            /
+            </summary>
+        </member>
+        <member name="P:H.Core.Recorders.Recording.Settings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recorders.Recording.Data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recorders.Recording.Header">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Recorders.Recording.DataReceived">
+            <summary>
+            When new partial raw data received.
+            </summary>
+        </member>
+        <member name="E:H.Core.Recorders.Recording.Stopped">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Recorders.Recording.Disposed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recorders.Recording.OnDataReceived(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:H.Core.Recorders.Recording.OnStopped(System.Byte[])">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recorders.Recording.OnDisposed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recorders.Recording.#ctor(H.Core.AudioSettings)">
+            <summary>
+            
+            </summary>
+            <param name="settings"></param>
+        </member>
+        <member name="M:H.Core.Recorders.Recording.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Recorders.Recording.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Recorders.RecordingExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recorders.RecordingExtensions.StopWhenSilence(H.Core.Recorders.IRecording,System.Int32,System.Int32,System.Double,H.Core.Utilities.ExceptionsBag)">
+            <summary>
+            Stop when values for <paramref name="silenceInMilliseconds"></paramref> of
+            <paramref name="bufferInMilliseconds"/> will be lower than <paramref name="threshold"></paramref>. <br/>
+            NAudioRecorder produces 100 DataReceived events per seconds. <br/>
+            It can be set up by NAudioRecorder.Delay property. <br/>
+            </summary>
+            <param name="recording"></param>
+            <param name="bufferInMilliseconds"></param>
+            <param name="silenceInMilliseconds"></param>
+            <param name="threshold"></param>
+            <param name="exceptions"></param>
+        </member>
+        <member name="M:H.Core.Recorders.RecordingExtensions.WaitStopAsync(H.Core.Recorders.IRecording,System.Threading.CancellationToken)">
+            <summary>
+            Waits <seealso cref="E:H.Core.Recorders.IRecording.Stopped"/> events. <br/>
+            Can be used with <seealso cref="M:H.Core.Recorders.RecordingExtensions.StopWhenSilence(H.Core.Recorders.IRecording,System.Int32,System.Int32,System.Double,H.Core.Utilities.ExceptionsBag)"/> extension.
+            </summary>
+            <param name="recording"></param>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="T:H.Core.Recorders.SilenceDetector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recorders.SilenceDetector.Settings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recorders.SilenceDetector.BufferSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recorders.SilenceDetector.RequiredCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Recorders.SilenceDetector.Threshold">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Recorders.SilenceDetector.Detected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Recorders.SilenceDetector.#ctor(H.Core.AudioSettings,System.Int32,System.Int32,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="settings"></param>
+            <param name="bufferSize"></param>
+            <param name="requiredCount"></param>
+            <param name="threshold"></param>
+        </member>
+        <member name="M:H.Core.Recorders.SilenceDetector.Write(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="bytes"></param>
+        </member>
+        <member name="M:H.Core.Recorders.SilenceDetector.GetMaxLevel(System.Byte[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="bytes"></param>
+            <param name="bits"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Runners.ActionBase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.ActionBase.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.ActionBase.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.ActionBase.IsCancellable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.ActionBase.IsInternal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Runners.ActionBase.Running">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Runners.ActionBase.Ran">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.ActionBase.OnRunning(H.Core.ICommand)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:H.Core.Runners.ActionBase.OnRan(H.Core.ICommand)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:H.Core.Runners.ActionBase.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:H.Core.Runners.ActionBase.RunAsync(H.Core.ICommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.ActionBase.PrepareCall(H.Core.ICommand)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.ActionBase.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Runners.AsyncAction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithCommand(System.String,System.Func{H.Core.ICommand,System.Threading.CancellationToken,System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithCommand(System.String,System.Func{H.Core.ICommand,System.Threading.CancellationToken,System.Threading.Tasks.Task},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithData(System.String,System.Func{System.Byte[],System.Threading.CancellationToken,System.Threading.Tasks.Task},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithData(System.String,System.Func{System.Byte[],System.Threading.CancellationToken,System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithArguments(System.String,System.Func{System.String[],System.Threading.CancellationToken,System.Threading.Tasks.Task},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithArguments(System.String,System.Func{System.String[],System.Threading.CancellationToken,System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithSingleArgument(System.String,System.Func{System.String,System.Threading.CancellationToken,System.Threading.Tasks.Task},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithSingleArgument(System.String,System.Func{System.String,System.Threading.CancellationToken,System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithoutArguments(System.String,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithoutArguments(System.String,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithCommand(System.String,System.Func{H.Core.ICommand,System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithCommand(System.String,System.Func{H.Core.ICommand,System.Threading.Tasks.Task},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithData(System.String,System.Func{System.Byte[],System.Threading.Tasks.Task},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithData(System.String,System.Func{System.Byte[],System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithArguments(System.String,System.Func{System.String[],System.Threading.Tasks.Task},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithArguments(System.String,System.Func{System.String[],System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithSingleArgument(System.String,System.Func{System.String,System.Threading.Tasks.Task},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithSingleArgument(System.String,System.Func{System.String,System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithoutArguments(System.String,System.Func{System.Threading.Tasks.Task},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.WithoutArguments(System.String,System.Func{System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="P:H.Core.Runners.AsyncAction.Action">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.#ctor(System.String,System.Func{H.Core.ICommand,System.Threading.CancellationToken,System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.#ctor(System.String,System.Func{H.Core.ICommand,System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+        </member>
+        <member name="M:H.Core.Runners.AsyncAction.RunAsync(H.Core.ICommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="cancellationToken"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Runners.Call">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.Call.Action">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.Call.Command">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Runners.Call.Running">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Runners.Call.Ran">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.Call.#ctor(H.Core.Runners.IAction,H.Core.ICommand)">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+            <param name="command"></param>
+        </member>
+        <member name="M:H.Core.Runners.Call.RunAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.Call.RunAsync(H.Core.IProcess{H.Core.ICommand},System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="process"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.Call.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Runners.IAction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.IAction.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.IAction.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.IAction.IsCancellable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.IAction.IsInternal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Runners.IAction.Running">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Runners.IAction.Ran">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.IAction.PrepareCall(H.Core.ICommand)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.IAction.RunAsync(H.Core.ICommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Runners.ICall">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.ICall.Action">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.ICall.Command">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Runners.ICall.Running">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Runners.ICall.Ran">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.ICall.RunAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.ICall.RunAsync(H.Core.IProcess{H.Core.ICommand},System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="process"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Runners.IProcessAction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.IProcessAction.RunAsync(H.Core.IProcess{H.Core.ICommand},H.Core.ICommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="process"></param>
+            <param name="command"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Runners.IRunner">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.IRunner.TryPrepareCall(H.Core.ICommand)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Runners.ProcessAction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.ProcessAction.#ctor(System.String,System.Func{H.Core.IProcess{H.Core.ICommand},H.Core.ICommand,System.Threading.CancellationToken,System.Threading.Tasks.Task{H.Core.IValue}},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.Runners.ProcessAction.RunAsync(H.Core.IProcess{H.Core.ICommand},H.Core.ICommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="process"></param>
+            <param name="command"></param>
+            <param name="cancellationToken"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Runners.Runner">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Runners.Runner.Actions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.Runner.TryPrepareAction(H.Core.ICommand,H.Core.Runners.IAction@)">
+            <summary>
+            
+            </summary>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.Runner.TryPrepareCall(H.Core.ICommand)">
+            <summary>
+            
+            </summary>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.Runner.Add(H.Core.Runners.IAction)">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:H.Core.Runners.Runner.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.Runner.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Runners.RunnerExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.RunnerExtensions.CallAsync(H.Core.Runners.IRunner,H.Core.ICommand,System.Threading.CancellationToken)">
+            <summary>
+            Calls runner's command.
+            </summary>
+            <param name="runner"></param>
+            <param name="command"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.RunnerExtensions.CallAsync(H.Core.Runners.IRunner,H.Core.ICommand,H.Core.IProcess{H.Core.ICommand},System.Threading.CancellationToken)">
+            <summary>
+            Calls runner's command.
+            </summary>
+            <param name="runner"></param>
+            <param name="command"></param>
+            <param name="process"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.RunnerExtensions.GetNextCommandAsync(H.Core.Module,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.Runners.RunnerExtensions.WaitAccept(H.Core.Runners.Runner,System.Threading.CancellationToken,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="runner"></param>
+            <param name="cancellationToken"></param>
+            <param name="additionalAccepts"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.Runners.RunnerExtensions.WaitAccept(H.Core.Runners.Runner,System.String,System.TimeSpan,System.Threading.CancellationToken,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="runner"></param>
+            <param name="message"></param>
+            <param name="timeout"></param>
+            <param name="cancellationToken"></param>
+            <param name="additionalAccepts"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:H.Core.Runners.RunnerExtensions.SearchAsync(H.Core.Runners.Runner,System.String,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="runner"></param>
+            <param name="text"></param>
+            <param name="cancellationToken"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Runners.SyncAction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.WithCommand(System.String,System.Func{H.Core.ICommand,H.Core.IValue},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.WithCommand(System.String,System.Action{H.Core.ICommand},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.WithData(System.String,System.Action{System.Byte[]},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.WithArguments(System.String,System.Action{System.String[]},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.WithSingleArgument(System.String,System.Action{System.String},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.WithoutArguments(System.String,System.Action,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+            <returns></returns>
+        </member>
+        <member name="P:H.Core.Runners.SyncAction.Action">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.#ctor(System.String,System.Func{H.Core.ICommand,H.Core.IValue},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.#ctor(System.String,System.Action{H.Core.ICommand},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.#ctor(System.String,System.Action{System.Byte[]},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.#ctor(System.String,System.Action{System.String[]},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.#ctor(System.String,System.Action{System.String},System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.#ctor(System.String,System.Action,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="action"></param>
+            <param name="description"></param>
+            <param name="isInternal"></param>
+        </member>
+        <member name="M:H.Core.Runners.SyncAction.RunAsync(H.Core.ICommand,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="cancellationToken"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Searchers.ISearcher">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Searchers.ISearcher.SearchAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Searchers.SearchResult">
+            <summary>
+            Represents a search result from ISearcher's.
+            </summary>
+            <param name="Url"></param>
+            <param name="Description"></param>
+        </member>
+        <member name="M:H.Core.Searchers.SearchResult.#ctor(System.String,System.String)">
+            <summary>
+            Represents a search result from ISearcher's.
+            </summary>
+            <param name="Url"></param>
+            <param name="Description"></param>
+        </member>
+        <member name="T:H.Core.Searchers.Searcher">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Searchers.Searcher.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Searchers.Searcher.SearchAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Settings.Setting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Settings.Setting.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Settings.Setting.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Settings.Setting.DefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Settings.Setting.SettingType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Settings.Setting.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Settings.Setting.CheckFunc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Settings.Setting.IsValid">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:H.Core.Settings.Setting.SetAction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Settings.Setting.Set">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Settings.SettingType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:H.Core.Settings.SettingType.Default">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:H.Core.Settings.SettingType.Path">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:H.Core.Settings.SettingType.Folder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:H.Core.Settings.SettingType.Enumerable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Storages.InvariantDictionaryStorage`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:H.Core.Storages.InvariantDictionaryStorage`1.Load">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Storages.InvariantDictionaryStorage`1.Save">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Storages.ISettingsStorage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Storages.ISettingsStorage.Set(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:H.Core.Storages.IStorage`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:H.Core.Storages.IStorage`1.Load">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Storages.IStorage`1.Save">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Storages.SettingsStorage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Storages.SettingsStorage.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Storages.SettingsStorage.Item(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Storages.SettingsStorage.Set(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:H.Core.Storages.SettingsStorage.Remove(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Storages.SettingsStorage.Load">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Storages.SettingsStorage.Save">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Storages.StorageExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Storages.StorageExtensions.GetOrAdd``1(H.Core.Storages.IStorage{``0},System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="storage"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Synthesizers.ISynthesizer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Synthesizers.ISynthesizer.UseCache">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Synthesizers.ISynthesizer.SupportedSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Synthesizers.ISynthesizer.ConvertAsync(System.String,H.Core.AudioSettings,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <param name="settings"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Synthesizers.Synthesizer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Synthesizers.Synthesizer.UseCache">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Synthesizers.Synthesizer.SupportedSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Synthesizers.Synthesizer.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Synthesizers.Synthesizer.ConvertAsync(System.String,H.Core.AudioSettings,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <param name="settings"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Synthesizers.SynthesizerExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Synthesizers.SynthesizerExtensions.PlayAsync(H.Core.Synthesizers.ISynthesizer,H.Core.Players.IPlayer,System.String,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="synthesizer"></param>
+            <param name="player"></param>
+            <param name="text"></param>
+            <param name="cancellationToken"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Utilities.EmptyArray`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:H.Core.Utilities.EmptyArray`1.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Core.Utilities.ExceptionsBag">
+            <summary>
+            Contains unhandled exceptions.
+            </summary>
+        </member>
+        <member name="P:H.Core.Utilities.ExceptionsBag.Exceptions">
+            <summary>
+            Occurred exceptions.
+            </summary>
+        </member>
+        <member name="P:H.Core.Utilities.ExceptionsBag.AggregateException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Core.Utilities.ExceptionsBag.ExceptionOccurred">
+            <summary>
+            Returns unhandled exceptions.
+            </summary>
+        </member>
+        <member name="M:H.Core.Utilities.ExceptionsBag.OnOccurred(System.Exception)">
+            <summary>
+            Adds to exceptions array and raises event.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:H.Core.Utilities.ExceptionsBag.EnsureNoExceptions">
+            <summary>
+            Throws <see cref="T:System.AggregateException"/> if any exceptions occur.
+            </summary>
+            <exception cref="T:System.AggregateException"></exception>
+        </member>
+        <member name="M:H.Core.Utilities.ExceptionsBag.Dispose">
+            <summary>
+            It just calls <see cref="M:H.Core.Utilities.ExceptionsBag.EnsureNoExceptions"/>. 
+            </summary>
+            <exception cref="T:System.AggregateException"></exception>
+        </member>
+        <member name="T:H.Core.Utilities.InvariantStringDictionary`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:H.Core.Utilities.InvariantStringDictionary`1.Item(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Utilities.InvariantStringDictionary`1.ContainsKey(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Utilities.InvariantStringDictionary`1.TryGetValue(System.String,`0@)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Utilities.InvariantStringDictionary`1.Remove(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Utilities.InvariantStringDictionary`1.Add(System.String,`0)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Utilities.StringExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Utilities.StringExtensions.CmdSplit(System.String)">
+            <summary>
+            CMD like(values in \"\" and \'\' can contain whitespaces) split.
+            </summary>
+            <param name="value"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Utilities.StringExtensions.IsAny(System.String,System.StringComparison,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="comparison"></param>
+            <param name="strings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Core.Utilities.StringExtensions.IsAnyOrdinalIgnoreCase(System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="strings"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Value.Empty">
+            <summary>
+            Empty value.
+            </summary>
+        </member>
+        <member name="M:H.Core.Value.Parse(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="P:H.Core.Value.Arguments">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Value.Argument">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Value.Data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Core.Value.IsEmpty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.Value.#ctor(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="arguments"></param>
+        </member>
+        <member name="M:H.Core.Value.#ctor(System.Byte[],System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <param name="arguments"></param>
+        </member>
+        <member name="M:H.Core.Value.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:H.Core.ValueExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Core.ValueExtensions.Merge(H.Core.IValue,H.Core.IValue)">
+            <summary>
+            Returns new value, contains concatenated <see cref="P:H.Core.IValue.Arguments"/> and <seealso cref="P:H.Core.IValue.Data"/>.
+            </summary>
+            <param name="value"></param>
+            <param name="secondValue"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+    </members>
+</doc>

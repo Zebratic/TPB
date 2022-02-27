@@ -3,6 +3,7 @@ using Discord.Commands;
 using Discord.Net;
 using Discord.WebSocket;
 using HTX_NINJA.Zooqle;
+using MonoTorrent.Client;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -167,6 +168,8 @@ namespace HTX_NINJA
                                 */
 
                                 TorrentInfo torrent = sortedtorrents.First();
+
+                                torrent.StartDownload();
 
                                 /* All needed now is:
                                     - Torrent downloading

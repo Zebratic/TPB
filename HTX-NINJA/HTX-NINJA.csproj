@@ -57,6 +57,15 @@
     <Reference Include="Discord.Net.WebSocket, Version=3.3.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\TPB\packages\Discord.Net.WebSocket.3.3.2\lib\net461\Discord.Net.WebSocket.dll</HintPath>
     </Reference>
+    <Reference Include="H.Core, Version=0.22.5.0, Culture=neutral, PublicKeyToken=603f13207e65c17b, processorArchitecture=MSIL">
+      <HintPath>..\TPB\packages\H.Core.0.22.5\lib\net45\H.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="H.Runners.TorrentRunner, Version=0.22.5.100, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\TPB\packages\H.Runners.TorrentRunner.0.22.5.100\lib\net461\H.Runners.TorrentRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.29.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\TPB\packages\HtmlAgilityPack.1.11.29\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\TPB\packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -68,8 +77,17 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Mono.Nat, Version=3.0.0.0, Culture=neutral, PublicKeyToken=6c9468a3c21bc6d1, processorArchitecture=MSIL">
+      <HintPath>..\TPB\packages\Mono.Nat.3.0.1\lib\netstandard2.0\Mono.Nat.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoTorrent, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\TPB\packages\MonoTorrent.2.0.4\lib\netstandard2.0\MonoTorrent.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\TPB\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ReusableTasks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\TPB\packages\ReusableTasks.2.0.0\lib\netstandard2.0\ReusableTasks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">

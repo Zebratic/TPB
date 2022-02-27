@@ -98,3 +98,16 @@ D:\Work\TPB\HTX-NINJA\obj\Debug\HTX-NINJA.csproj.CoreCompileInputs.cache
 D:\Work\TPB\HTX-NINJA\obj\Debug\HTX-NINJA.csproj.CopyComplete
 D:\Work\TPB\HTX-NINJA\obj\Debug\HTX-NINJA.exe
 D:\Work\TPB\HTX-NINJA\obj\Debug\HTX-NINJA.pdb
+D:\Work\TPB\HTX-NINJA\bin\Debug\Mono.Nat.dll
+D:\Work\TPB\HTX-NINJA\bin\Debug\MonoTorrent.dll
+D:\Work\TPB\HTX-NINJA\bin\Debug\ReusableTasks.dll
+D:\Work\TPB\HTX-NINJA\bin\Debug\Mono.Nat.xml
+D:\Work\TPB\HTX-NINJA\bin\Debug\MonoTorrent.xml
+D:\Work\TPB\HTX-NINJA\bin\Debug\ReusableTasks.xml
+D:\Work\TPB\HTX-NINJA\bin\Debug\H.Core.dll
+D:\Work\TPB\HTX-NINJA\bin\Debug\H.Runners.TorrentRunner.dll
+D:\Work\TPB\HTX-NINJA\bin\Debug\HtmlAgilityPack.dll
+D:\Work\TPB\HTX-NINJA\bin\Debug\H.Core.xml
+D:\Work\TPB\HTX-NINJA\bin\Debug\H.Runners.TorrentRunner.xml
+D:\Work\TPB\HTX-NINJA\bin\Debug\HtmlAgilityPack.pdb
+D:\Work\TPB\HTX-NINJA\bin\Debug\HtmlAgilityPack.xml
