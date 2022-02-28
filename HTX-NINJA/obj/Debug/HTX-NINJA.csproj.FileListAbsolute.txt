@@ -111,3 +111,12 @@ D:\Work\TPB\HTX-NINJA\bin\Debug\H.Core.xml
 D:\Work\TPB\HTX-NINJA\bin\Debug\H.Runners.TorrentRunner.xml
 D:\Work\TPB\HTX-NINJA\bin\Debug\HtmlAgilityPack.pdb
 D:\Work\TPB\HTX-NINJA\bin\Debug\HtmlAgilityPack.xml
+C:\Work\TPB\HTX-NINJA\bin\Debug\HtmlAgilityPack.dll
+C:\Work\TPB\HTX-NINJA\bin\Debug\Mono.Nat.dll
+C:\Work\TPB\HTX-NINJA\bin\Debug\MonoTorrent.dll
+C:\Work\TPB\HTX-NINJA\bin\Debug\ReusableTasks.dll
+C:\Work\TPB\HTX-NINJA\bin\Debug\HtmlAgilityPack.pdb
+C:\Work\TPB\HTX-NINJA\bin\Debug\HtmlAgilityPack.xml
+C:\Work\TPB\HTX-NINJA\bin\Debug\Mono.Nat.xml
+C:\Work\TPB\HTX-NINJA\bin\Debug\MonoTorrent.xml
+C:\Work\TPB\HTX-NINJA\bin\Debug\ReusableTasks.xml

@@ -5,7 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading;
-using H.Runners;
+using MonoTorrent;
+using System.IO;
+using System.Web;
+using System.Windows.Forms;
+using Newtonsoft.Json;
+using MonoTorrent.Client;
+using System.Threading.Tasks;
 
 namespace HTX_NINJA.Zooqle
 {
@@ -246,10 +252,6 @@ namespace HTX_NINJA.Zooqle
 
         public static void StartDownload(this TorrentInfo _torrent)
         {
-            TorrentRunner torrentQueue = new TorrentRunner();
-            torrentQueue.Run(_torrent.Title, new string[] { "sussy" });
-            // idfk how this shit library works :skull:
-            // poopoo library
         }
     }
 }

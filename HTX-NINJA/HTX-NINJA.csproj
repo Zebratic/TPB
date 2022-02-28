@@ -57,12 +57,6 @@
     <Reference Include="Discord.Net.WebSocket, Version=3.3.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\TPB\packages\Discord.Net.WebSocket.3.3.2\lib\net461\Discord.Net.WebSocket.dll</HintPath>
     </Reference>
-    <Reference Include="H.Core, Version=0.22.5.0, Culture=neutral, PublicKeyToken=603f13207e65c17b, processorArchitecture=MSIL">
-      <HintPath>..\TPB\packages\H.Core.0.22.5\lib\net45\H.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="H.Runners.TorrentRunner, Version=0.22.5.100, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\TPB\packages\H.Runners.TorrentRunner.0.22.5.100\lib\net461\H.Runners.TorrentRunner.dll</HintPath>
-    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.11.29.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\TPB\packages\HtmlAgilityPack.1.11.29\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
