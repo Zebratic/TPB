@@ -3,7 +3,6 @@ using Discord.Commands;
 using Discord.Net;
 using Discord.WebSocket;
 using HTX_NINJA.Zooqle;
-using MonoTorrent.Client;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -169,6 +168,8 @@ namespace HTX_NINJA
 
                                 TorrentInfo torrent = sortedtorrents.First();
 
+                                
+
                                 torrent.StartDownload();
 
                                 /* All needed now is:
@@ -184,6 +185,7 @@ namespace HTX_NINJA
                                 // detect? when torrent done and ping/DM user with request.User
                                 //if (torrent.FileSize > 10 GB)
                                 //        notify myself if its alright
+
 
                                 EmbedBuilder embedBuilder = new EmbedBuilder();
                                 embedBuilder.WithTitle($"{selectedmovie.Title} is now being downloaded!");

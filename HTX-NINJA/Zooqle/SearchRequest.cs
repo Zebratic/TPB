@@ -5,13 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading;
-using MonoTorrent;
 using System.IO;
 using System.Web;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using MonoTorrent.Client;
 using System.Threading.Tasks;
+using SuRGeoNix.BitSwarmLib;
 
 namespace HTX_NINJA.Zooqle
 {
@@ -252,6 +251,46 @@ namespace HTX_NINJA.Zooqle
 
         public static void StartDownload(this TorrentInfo _torrent)
         {
+            Console.WriteLine("Queuing " + _torrent.Title + " for download...");
+            Options opt = new Options();
+            BitSwarm bitSwarm = new BitSwarm(opt);
+
+            // Step 2: Subscribe events
+            bitSwarm.MetadataReceived += BitSwarm_MetadataReceived;
+            bitSwarm.StatsUpdated += BitSwarm_StatsUpdated;
+            bitSwarm.StatusChanged += BitSwarm_StatusChanged;
+            bitSwarm.OnFinishing += BitSwarm_OnFinishing;
+
+
+            bitSwarm.Open(_torrent.Magnet);
+            bitSwarm.Start();
+
+            //bitSwarm.Dispose(); // when done
+        }
+
+        private static void BitSwarm_MetadataReceived(object source, BitSwarm.MetadataReceivedArgs e)
+        {
+            Console.WriteLine("BitSwarm_MetadataReceived:" + e.Torrent.file.name);
+        }
+
+        private static void BitSwarm_StatsUpdated(object source, BitSwarm.StatsUpdatedArgs e)
+        {
+            Console.WriteLine("BitSwarm_StatsUpdated Progress: " + e.Stats.Progress + "%");
+            Console.WriteLine("BitSwarm_StatsUpdated ETA: " + TimeSpan.FromSeconds((e.Stats.ETA + e.Stats.AvgETA) / 2).ToString(@"hh\:mm\:ss"));
+            Console.WriteLine("BitSwarm_StatsUpdated ETAAVG: " + TimeSpan.FromSeconds(e.Stats.AvgETA).ToString(@"hh\:mm\:ss"));
+            Console.WriteLine("BitSwarm_StatsUpdated ETACUR: " + TimeSpan.FromSeconds(e.Stats.ETA).ToString(@"hh\:mm\:ss"));
+        }
+
+        private static void BitSwarm_StatusChanged(object source, BitSwarm.StatusChangedArgs e)
+        {
+            Console.WriteLine("BitSwarm_StatusChanged.Status: " + e.Status);
+            Console.WriteLine("BitSwarm_StatusChanged.ErrorMsg: " + e.ErrorMsg);
+        }
+
+        private static void BitSwarm_OnFinishing(object source, BitSwarm.FinishingArgs e)
+        {
+            Console.WriteLine("BitSwarm_OnFinishing");
+            // dispose bitSwarm
         }
     }
 }

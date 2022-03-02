@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Partfiles</name>
+    </assembly>
+    <members>
+        <member name="T:SuRGeoNix.Partfiles.Options">
+            <summary>
+            Advanced Partfiles Options
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.Folder">
+            <summary>
+            The folder that the completed file will be placed (Default: %current%)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.PartFolder">
+            <summary>
+            The folder that the part file will be placed (Default: %temp%)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.PartExtension">
+            <summary>
+            The file extension of the part file (Default: .apf)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.Overwrite">
+            <summary>
+            To overwrite the completed file if exists (Default: false)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.PartOverwrite">
+            <summary>
+            To overwrite the part file if exists (Default: false)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.AutoCreate">
+            <summary>
+            To automatically create the completed file when and if the size has been specified and reached (Default: true)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.DeleteOnDispose">
+            <summary>
+            To delete the completed file on dispose (Default: false)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.DeletePartOnDispose">
+            <summary>
+            To delete the part file on dispose (Default: false)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.DeletePartOnCreate">
+            <summary>
+            To delete the part file after creating the completed file (Default: true)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.StayAlive">
+            <summary>
+            File stream will be changed from part to completed file after creation to continue support reading process (Default: true)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.FirstChunksize">
+            <summary>
+            The size of first chunk if it is known (will allow position reading process to work without receiving it first)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.LastChunksize">
+            <summary>
+            The size of last chunk if it is known
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.Partfiles.Options.FlushOnEveryChunk">
+            <summary>
+            Whether to flush on every chunk write
+            </summary>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Options.Clone">
+            <summary>
+            Clones this options to a new instance
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SuRGeoNix.Partfiles.PartStream">
+            <summary>
+            Thread-safe read-only stream to access partfile's data
+            </summary>
+        </member>
+        <member name="T:SuRGeoNix.Partfiles.Partfile">
+            <summary>
+            Advanced Partfiles (thread-safe read/write)
+            </summary>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Partfile.#ctor(System.String,System.Int32,SuRGeoNix.Partfiles.Options)">
+            <summary>
+            Prepares a new partfile
+            </summary>
+            <param name="filename">Will be used for both part and completed files. It could also be a path eg. folder/file.ext</param>
+            <param name="chunksize">The main chunksize. Check also Options for first/last chunksize</param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Partfile.#ctor(System.String,System.Int32,System.Int64,SuRGeoNix.Partfiles.Options)">
+            <summary>
+            Prepares a new partfile
+            </summary>
+            <param name="filename">Will be used for both part and completed files. It could also be a path eg. folder/file.ext</param>
+            <param name="chunksize">The main chunksize. Check also Options for first/last chunksize</param>
+            <param name="size"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Partfile.#ctor(System.String,SuRGeoNix.Partfiles.Options)">
+            <summary>
+            Loads an existing partfile
+            </summary>
+            <param name="partfile">Absolute path of the existing part file</param>
+            <param name="options">Warning: main options will be used from the saved part file</param>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Partfile.#ctor(System.String,System.Boolean,SuRGeoNix.Partfiles.Options)">
+            <summary>
+            Loads an existing partfile
+            </summary>
+            <param name="partfile">Absolute path of the existing part file</param>
+            <param name="forceOptionsFolder">Changes the previously defined folder with the new one from Options.Folder</param>
+            <param name="options">Warning: main options will be used from the saved part file</param>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Partfile.Write(System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Writes a middle chunk with 'Chunksize' length
+            </summary>
+            <param name="chunkId">The zero-based chunk id of the completed file</param>
+            <param name="chunk">Chunk data</param>
+            <param name="offset">The zero-based offset</param>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Partfile.WriteFirst(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Writes the first chunk (0) of the completed file
+            </summary>
+            <param name="chunk">Chunk data</param>
+            <param name="offset">The zero-based offset</param>
+            <param name="len">Length</param>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Partfile.WriteLast(System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Writes the last chunk of the completed file (&lt;=chunksize)
+            </summary>
+            <param name="chunkId">The zero-based chunk id of the completed file</param>
+            <param name="chunk">Chunk data</param>
+            <param name="offset">The zero-based offset</param>
+            <param name="len">Length</param>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Partfile.Read(System.Int64,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads the specified actual bytes from the part file
+            </summary>
+            <param name="pos"></param>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Partfile.ReadChunk(System.Int32,System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads the specified chunkId bytes from the part file
+            </summary>
+            <param name="chunkId">The chunk id of the completed file</param>
+            <param name="startByte">From which byte of the chunk will start the read</param>
+            <param name="buffer">The output buffer</param>
+            <param name="offset">The offset to start on the output buffer</param>
+            <param name="count">How many bytes to read (Should ensure &lt;= ChunkSize or First/Last ChunkSize)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Partfile.GetReadStream">
+            <summary>
+            Creates a new stream for read-only access of part data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Partfile.Create">
+            <summary>
+            Manually forces to create the completed file.
+            Warning: If not all chunks have been written, it will crash! (See Options.AutoCreate)
+            </summary>
+        </member>
+        <member name="M:SuRGeoNix.Partfiles.Partfile.Dispose">
+            <summary>
+            Closes the file input and deletes part and/or completed files if specified by the options
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,645 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BitSwarmLib</name>
+    </assembly>
+    <members>
+        <member name="T:SuRGeoNix.BitSwarmLib.BEP.Torrent">
+            <summary>
+            BitSwarm's Torrent
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.BEP.Torrent.file">
+            <summary>
+            Fields of .torrent file (extracted from bencoded data)
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.BEP.Torrent.data">
+            <summary>
+            Torrent data
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.BEP.Torrent.metadata">
+            <summary>
+            Metadata
+            </summary>
+        </member>
+        <member name="T:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentFile">
+            <summary>
+            Fields of .torrent file (extracted from bencoded data)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentFile.infoHash">
+            <summary>
+            SHA1 Hash computation of 'info' part
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentFile.trackers">
+            <summary>
+            List of trackers extracted from 'announce' | 'announce-list'
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentFile.name">
+            <summary>
+            Torrent name and file name in case of single file
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentFile.length">
+            <summary>
+            Torrent size (bytes) and file size in case of single file
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentFile.paths">
+            <summary>
+            List of relative paths (in case of multi-file)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentFile.lengths">
+            <summary>
+            List of sizes (bytes) for paths with the same array index (in case of multi-file)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentFile.pieceLength">
+            <summary>
+            Piece size (bytes)
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentFile.pieces">
+            <summary>
+            List of SHA1 Hashes for all torrent pieces
+            </summary>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentFile.GetFileIndex(System.String)">
+            <summary>
+            Gets the array index of the specified file
+            </summary>
+            <param name="filename"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentFile.GetLength(System.String)">
+            <summary>
+            Gets the size of the specified file
+            </summary>
+            <param name="filename"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentFile.GetStartPosition(System.String)">
+            <summary>
+            Gets file position in the torrent
+            </summary>
+            <param name="filename"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData">
+            <summary>
+            Torrent data
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.isDone">
+            <summary>
+            Whether the torrent data have been completed successfully
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.files">
+            <summary>
+            List of APF incomplete / part files that required to create the completed files
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.filesIncludes">
+            <summary>
+            List of curerent included files
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.folder">
+            <summary>
+            Folder where the completed files will be saved (Same as Options.FolderComplete in case of single file, otherwise Options.FolderComplete + Torrent.Name)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.folderTemp">
+            <summary>
+            Folder where the incomplete / part files will be saved (Same as Options.FolderIncomplete in case of single file, otherwise Options.FolderIncomplete + Torrent.Name)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.totalSize">
+            <summary>
+            Total torrent size (bytes)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.pieces">
+            <summary>
+            Total pieces
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.pieceSize">
+            <summary>
+            Piece size (bytes)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.pieceLastSize">
+            <summary>
+            Last piece size (bytes)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.blocks">
+            <summary>
+            Total blocks
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.blockSize">
+            <summary>
+            Block size (bytes)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.blockLastSize">
+            <summary>
+            Last block size (bytes)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.blockLastSize2">
+            <summary>
+            Last block size (bytes)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.blocksLastPiece">
+            <summary>
+            Blocks of last piece
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.progress">
+            <summary>
+            Progress bitfield (received pieces)
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.requests">
+            <summary>
+            Requests bitfield (requested pieces)
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.BEP.Torrent.TorrentData.progressPrev">
+            <summary>
+            Previous progress bitfield (received pieces).
+            Required for include / exclude files cases
+            </summary>
+        </member>
+        <member name="T:SuRGeoNix.BitSwarmLib.BEP.Torrent.MetaData">
+            <summary>
+            Metadata
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.MetaData.isDone">
+            <summary>
+            Whether the metadata have been received successfully
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.BEP.Torrent.MetaData.file">
+            <summary>
+            Incomplete / part file for .torrent
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.MetaData.pieces">
+            <summary>
+            Total pieces
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BEP.Torrent.MetaData.totalSize">
+            <summary>
+            Total size (bytes)
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.BEP.Torrent.MetaData.progress">
+            <summary>
+            Progress bitfield (received pieces)
+            </summary>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.BEP.TorrentStream.Read(System.Span{System.Byte})">
+            <summary>
+            Reads the specified span bytes from the part file until they are available or cancel
+            </summary>
+            <param name="buffer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.BEP.TorrentStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads the specified actual bytes from the part file until they are available or cancel
+            </summary>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <returns>Bytes read size | -2 on Error | -1 on Cancel</returns>
+        </member>
+        <member name="T:SuRGeoNix.BitSwarmLib.BitSwarm">
+            <summary>
+            Bittorrent protocol v2 implementation
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.BitSwarm.Version">
+            <summary>
+            Library version
+            </summary>
+        </member>
+        <member name="T:SuRGeoNix.BitSwarmLib.BitSwarm.InputType">
+            <summary>
+            BitSwarm's valid input types otherwise unknown
+            </summary>
+        </member>
+        <member name="E:SuRGeoNix.BitSwarmLib.BitSwarm.OnFinishing">
+            <summary>
+            Fires when all included pieces have been received and allows to include more incomplete files and prevent it from finishing (e.Cancel = true)
+            </summary>
+        </member>
+        <member name="E:SuRGeoNix.BitSwarmLib.BitSwarm.MetadataReceived">
+            <summary>
+            Fires when metadata are available (e.Torrent). If input is a torrent or session file will fire direclty after Open. Can be used to specify included files
+            </summary>
+        </member>
+        <member name="E:SuRGeoNix.BitSwarmLib.BitSwarm.StatusChanged">
+            <summary>
+            Fires when finished (e.Status). If Status is 0 the download has been completed, if Status is 1 the sessions has been stopped and if Status is 2 an error has been occurred (e.ErrorMsg)
+            </summary>
+        </member>
+        <member name="E:SuRGeoNix.BitSwarmLib.BitSwarm.StatsUpdated">
+            <summary>
+            Fires after receiving metdata, every 2 seconds with the fresh stats for connections/bytes/speed (e.Stats)
+            </summary>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.BitSwarm.#ctor(SuRGeoNix.BitSwarmLib.Options)">
+            <summary>
+            Creates a new instance of BitSwarm (subscribe to events before Open/Start)
+            </summary>
+            <param name="opt">BitSwarm's main options (can be changed later)</param>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.BitSwarm.Open(System.String)">
+            <summary>
+            Opens a Torrent File, Magnet Link, SHA-1 Hex Hash, Base32 Hash or a previously Saved Session (.bsf).
+            Searches for -infoHash-.bsf file in OptionsStatic.FolderSessions and restores it automatically
+            </summary>
+            <param name="input">Torrent File, Magnet Link, SHA-1 Hex Hash, Base32 Hash or Saved Session File</param>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.BitSwarm.Start">
+            <summary>
+            Starts BitSwarm
+            </summary>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.BitSwarm.Pause">
+            <summary>
+            Pauses BitSwarm &amp; Disposes Threadpool
+            </summary>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.BitSwarm.Dispose(System.Boolean)">
+            <summary>
+            Stops BitSwarm &amp; Disposes
+            </summary>
+            <param name="force">To avoid waiting for proper disposing</param>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.BitSwarm.IncludeFiles(System.Collections.Generic.List{System.String})">
+            <summary>
+            Forces BitSwarm to download only the specified files (can be called at any time)
+            </summary>
+            <param name="includeFiles">Downloads only the specified files (from torrent.file.paths)</param>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.BitSwarm.ValidateInput(System.String)">
+            <summary>
+            Checks if the provided input could be handled by BitSwarm
+            </summary>
+            <param name="input">Torrent File, Magnet Link, SHA-1 Hex Hash, Base32 Hash or Saved Session File</param>
+            <returns>Identified InputType or InputType.Unknown</returns>
+        </member>
+        <member name="T:SuRGeoNix.BitSwarmLib.Options">
+            <summary>
+            BitSwarm's Options ([CP] stands for copy, that changes will not affect bitswarm's running session)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.FolderComplete">
+            <summary>
+            [CP] Folder where the completed files will be saved
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.FolderIncomplete">
+            <summary>
+            [CP] Folder where the incomplete (part) files will be saved
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.FolderTorrents">
+            <summary>
+            [CP] Folder where the .torrent files will be saved
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.FolderSessions">
+            <summary>
+            [CP] Folder where the .bsf BitSwarm's Session Files will be saved
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.TrackersPath">
+            <summary>
+            [CP] Trackers file to include (Format: udp://host:port , one tracker per line)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.MaxTotalConnections">
+            <summary>
+            Max number of total TCP connections
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.MaxNewConnections">
+            <summary>
+            Max number of new TCP connections
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.ConnectionTimeout">
+            <summary>
+            Peer's TCP Connection Timeout (ms)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.HandshakeTimeout">
+            <summary>
+            Peer's Handshake retrieval Timeout (ms)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.MetadataTimeout">
+            <summary>
+            Peer's Metadata Piece Timeout (ms) - Re-requests timed out piece
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.MetadataParallelReq">
+            <summary>
+            [CP] Metadata parallel requests from peers (2 from each, must be multiple of 2)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.PieceTimeout">
+            <summary>
+            Peer's Piece Timeout (ms) - Re-requests timed out piece
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.PieceRetries">
+            <summary>
+            Peer's Piece Timeout Retries - Resets happens on first timeout.
+            Used mainly for streaming with smaller timeouts and more retries for fast piece retrieval and without dropping the slow download rated peers
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.PieceBufferTimeout">
+            <summary>
+            Peer's Piece Timeout (ms) during reading/buffering - Re-requests timed out piece
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.PieceBufferRetries">
+            <summary>
+            Peer's Piece Timeout Retries during reading/buffering - Resets happens on first timeout.
+            Used mainly for streaming with smaller timeouts and more retries for fast piece retrieval and without dropping the slow download rated peers
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.EnableBuffering">
+            <summary>
+            Peers will use PieceBufferTimeout/PieceBufferRetries if focus area data are not available
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.EnablePEX">
+            <summary>
+            Enable/Disable PEX
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.EnableDHT">
+            <summary>
+            Enable/Disable DHT
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.EnableTrackers">
+            <summary>
+            Enable/Disable Trackers
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.PeersFromTracker">
+            <summary>
+            Number of peers to request from each tracker (-1: Max)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.BlockRequests">
+            <summary>
+            Number of blocks to request from each peer at once (Large ensures better speed / Small guarantees less drop bytes)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.Verbosity">
+            <summary>
+            Log verbosity [0-4]
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.LogTracker">
+            <summary>
+            Enable/Disable logging for trackers
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.LogPeer">
+            <summary>
+            Enable/Disable logging for peers
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.LogDHT">
+            <summary>
+            Enable/Disable logging for DHT
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.LogStats">
+            <summary>
+            Enable/Disable logging for statistics
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.PreventTimePeriods">
+            <summary>
+            Enable/Disable TimeBeginPeriod(5) on Windows
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Options.ConfigFile">
+            <summary>
+            Default XML configuration file name
+            </summary>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.Options.CreateConfig(SuRGeoNix.BitSwarmLib.Options,System.String)">
+            <summary>
+            Creates an XML configuration file
+            </summary>
+            <param name="opt">BitSwarm's options that will be used for the creation</param>
+            <param name="path">The folder to export the configuration (Default: current)</param>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.Options.LoadConfig(System.String)">
+            <summary>
+            Loads BitSwarm's options from an XML configuration file
+            </summary>
+            <param name="customFilePath">The folder of the configuration file (Default: Searches in current and a) for unix in %HOME%/.bitswarm b) for windows in %APPDATA%/BitSwarm)</param>
+            <returns>BitSwarm's options</returns>
+        </member>
+        <member name="M:SuRGeoNix.BitSwarmLib.Options.Clone">
+            <summary>
+            Options clone to seperate live changes from the ones that are not allowed / require restart
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SuRGeoNix.BitSwarmLib.Stats">
+            <summary>
+            BitSwarm's Statistics
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.DownRate">
+            <summary>
+            Current download rate
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.AvgRate">
+            <summary>
+            Average download rate
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.MaxRate">
+            <summary>
+            Max download rate
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.AvgETA">
+            <summary>
+            Average ETA
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.ETA">
+            <summary>
+            Current ETA
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.Progress">
+            <summary>
+            Complete progress
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.PiecesIncluded">
+            <summary>
+            Total required pieces to complete
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.BytesIncluded">
+            <summary>
+            Total required bytes to complete
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.BytesCurDownloaded">
+            <summary>
+            Downloaded bytes that have been saved on disk
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.BytesDownloaded">
+            <summary>
+            Downloaded bytes that have been saved on disk and memory (working pieces)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.BytesDownloadedPrevSession">
+            <summary>
+            Downloaded bytes from previous session (total part files bytes)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.BytesDropped">
+            <summary>
+            Dropped bytes (from SHA1 validation fails and already received)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.PeersTotal">
+            <summary>
+            Peers total from DHT, PEX and Trackers (Stored)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.PeersInQueue">
+            <summary>
+            Peers that we are going to connect (Dispatch stack)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.PeersConnecting">
+            <summary>
+            Peers that we are connecting (Shortrun threads) 
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.PeersConnected">
+            <summary>
+            Peers that we are already connected (Longrun threads = Choked + Unchoked + Downloading)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.PeersChoked">
+            <summary>
+            Peers that are chocked
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.PeersUnChoked">
+            <summary>
+            Peers that are unchoked
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.PeersDownloading">
+            <summary>
+            Peers that we are downloading
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.StartTime">
+            <summary>
+            Session start timestamp
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.CurrentTime">
+            <summary>
+            Session current timestamp
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.EndTime">
+            <summary>
+            Session end timestamp
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.SleepMode">
+            <summary>
+            When sleep mode is active
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.BoostMode">
+            <summary>
+            When boost mode is active
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.EndGameMode">
+            <summary>
+            When end game mode is active
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.AlreadyReceived">
+            <summary>
+            Number of pieces that already have been received
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.DHTPeers">
+            <summary>
+            Number of peers found from DHT (at least)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.PEXPeers">
+            <summary>
+            Number of peers found from PEX (at least)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.TRKPeers">
+            <summary>
+            Number of peers found from Trackers (at least)
+            </summary>
+        </member>
+        <member name="P:SuRGeoNix.BitSwarmLib.Stats.SHA1Failures">
+            <summary>
+            Times that SHA1 validation failed
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.Stats.Rejects">
+            <summary>
+            Number of block rejects that we have received
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.Stats.HandshakeTimeouts">
+            <summary>
+            Number of timeouts during Handshake
+            </summary>
+        </member>
+        <member name="F:SuRGeoNix.BitSwarmLib.Stats.PieceTimeouts">
+            <summary>
+            Number of timeouts during Piece retrieval
+            </summary>
+        </member>
+    </members>
+</doc>
