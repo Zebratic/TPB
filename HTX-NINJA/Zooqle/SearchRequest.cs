@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using SuRGeoNix.BitSwarmLib;
+using System.Runtime.CompilerServices;
 
 namespace HTX_NINJA.Zooqle
 {
@@ -27,6 +28,7 @@ namespace HTX_NINJA.Zooqle
         public List<MovieInfo> Results { get; set; }
         public int CurrentIndex { get; set; }
         public DateTime LastInteraction { get; set; }
+        public BitSwarm BitSwarm { get; set; }
         public SearchRequest(SocketUser _user)
         {
             User = _user;
@@ -249,10 +251,21 @@ namespace HTX_NINJA.Zooqle
             }
         }
 
-        public static void StartDownload(this TorrentInfo _torrent)
+        public static BitSwarm StartDownload(this TorrentInfo _torrent)
         {
             Console.WriteLine("Queuing " + _torrent.Title + " for download...");
             Options opt = new Options();
+#if DEBUG
+            opt.FolderTorrents = Environment.CurrentDirectory + @"\Downloads\BOT_Torrents";
+            opt.FolderSessions = Environment.CurrentDirectory + @"\Downloads\BOT_Sessions";
+            opt.FolderIncomplete = Environment.CurrentDirectory + @"\Downloads\BOT_Incomplete";
+            opt.FolderComplete = Environment.CurrentDirectory + @"\Downloads\BOT_Complete";
+#else
+            opt.FolderTorrents = @"F:\BOT_Torrents";
+            opt.FolderSessions = @"F:\BOT_Sessions";
+            opt.FolderIncomplete = @"F:\BOT_Incomplete";
+            opt.FolderComplete = @"F:\BOT_Complete";
+#endif
             BitSwarm bitSwarm = new BitSwarm(opt);
 
             // Step 2: Subscribe events
@@ -266,15 +279,18 @@ namespace HTX_NINJA.Zooqle
             bitSwarm.Start();
 
             //bitSwarm.Dispose(); // when done
+            return bitSwarm;
         }
 
         private static void BitSwarm_MetadataReceived(object source, BitSwarm.MetadataReceivedArgs e)
         {
+            BitSwarm bs = source as BitSwarm;
             Console.WriteLine("BitSwarm_MetadataReceived:" + e.Torrent.file.name);
         }
 
         private static void BitSwarm_StatsUpdated(object source, BitSwarm.StatsUpdatedArgs e)
         {
+            BitSwarm bs = source as BitSwarm;
             Console.WriteLine("BitSwarm_StatsUpdated Progress: " + e.Stats.Progress + "%");
             Console.WriteLine("BitSwarm_StatsUpdated ETA: " + TimeSpan.FromSeconds((e.Stats.ETA + e.Stats.AvgETA) / 2).ToString(@"hh\:mm\:ss"));
             Console.WriteLine("BitSwarm_StatsUpdated ETAAVG: " + TimeSpan.FromSeconds(e.Stats.AvgETA).ToString(@"hh\:mm\:ss"));
@@ -283,14 +299,25 @@ namespace HTX_NINJA.Zooqle
 
         private static void BitSwarm_StatusChanged(object source, BitSwarm.StatusChangedArgs e)
         {
+            BitSwarm bs = source as BitSwarm;
             Console.WriteLine("BitSwarm_StatusChanged.Status: " + e.Status);
             Console.WriteLine("BitSwarm_StatusChanged.ErrorMsg: " + e.ErrorMsg);
         }
-
         private static void BitSwarm_OnFinishing(object source, BitSwarm.FinishingArgs e)
         {
+            BitSwarm bs = source as BitSwarm;
             Console.WriteLine("BitSwarm_OnFinishing");
-            // dispose bitSwarm
+
+            // clean unwanted files
+            TorrentCleaner.CleanPath(bs.Options.FolderComplete);
+            
+            // move file(s) to directory
+
+
+            // Notify user in dms that download has finished
+
+            // dispose torrent client
+            bs.Dispose();
         }
     }
 }

@@ -170,7 +170,7 @@ namespace HTX_NINJA
 
                                 
 
-                                torrent.StartDownload();
+                                request.BitSwarm = torrent.StartDownload();
 
                                 /* All needed now is:
                                     - Torrent downloading
@@ -198,7 +198,7 @@ namespace HTX_NINJA
                                 embedBuilder.WithThumbnailUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Eo_circle_light-green_checkmark.svg/2048px-Eo_circle_light-green_checkmark.svg.png");
                                 embedBuilder.WithFooter($"HTX.NINJA | Zebratic#6969");
                                 try { await arg.FollowupAsync(embed: embedBuilder.Build()); } catch (Exception ex) { Console.WriteLine(ex); }
-                                GlobalRequests.SearchRequests.Remove(request);
+                                //GlobalRequests.SearchRequests.Remove(request);
                             }
                             catch (Exception ex)
                             {
@@ -296,6 +296,10 @@ namespace HTX_NINJA
                 }
                 else // Everywhere else
                 {
+                    if (message.Channel.Name.Contains("commands"))
+                        try { await arg.DeleteAsync(); } catch { }
+                        return;
+
                     var color = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.Write($"{DateTime.Now.Hour}-{DateTime.Now.Minute}|[{context.Guild.Id}|{context.Guild}|{message.Channel.Id}|{message.Channel}|{message.Author}|{message.Author.Id}|]:\n");
