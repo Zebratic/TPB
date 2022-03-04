@@ -18,7 +18,12 @@ namespace HTX_NINJA.Zooqle
     public class GlobalRequests
     {
         public static List<SearchRequest> SearchRequests = new List<SearchRequest>();
-        public static string BaseURL = "https://zooqle.com/";
+        public static string[] ZooqleURLs =
+        {
+            "https://zooqle.com/",
+            "https://zooqle.unblockninja.com/"
+        };
+        public static string ActiveURL = ZooqleURLs[0];
     }
 
     public class SearchRequest
@@ -55,25 +60,41 @@ namespace HTX_NINJA.Zooqle
             _request.LastInteraction = DateTime.UtcNow;
             _request.Term = _term;
 
+            int urlnum = 0;
             using (WebClient wc = new WebClient())
             {
-                wc.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-                string html = wc.DownloadString(GlobalRequests.BaseURL + "search?q=" + _term.Replace(" ", "+"));
-
-                string[] movies = html.Split(new[] { "<li title=\"", }, StringSplitOptions.None);
-
-                for (int i = 1; i < movies.Length - 1; i++)
+                retry:
+                try
                 {
-                    MovieInfo movie = new MovieInfo();
-                    movie.Title = movies[i].Split(new[] { "\">" }, StringSplitOptions.None)[0];
-                    movie.URL = GlobalRequests.BaseURL + movies[i].Split(new[] { "href=\"/" }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0];
-                    try { movie.CoverURL = GlobalRequests.BaseURL + movies[i].Split(new[] { "src=\"/" }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0].Replace("2.jpg", "0.jpg"); } catch { }
-                    string torrentsavailable_string = movies[i].Split(new[] { "\"></i> " }, StringSplitOptions.None)[1].Split(new[] { " torrents" }, StringSplitOptions.None)[0];
-                    movie.TorrentsAvailable = -1;
-                    try { movie.TorrentsAvailable = Convert.ToInt32(torrentsavailable_string); } catch { }
-                    try { movie.GetMovieInfo(true, false); } catch { }
-                    if (movie.TorrentsAvailable > 0 || movie.TorrentsAvailable == -1)
-                        _request.Results.Add(movie);
+                    wc.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+                    string html = wc.DownloadString(GlobalRequests.ActiveURL + "search?q=" + _term.Replace(" ", "+"));
+
+                    string[] movies = html.Split(new[] { "<li title=\"", }, StringSplitOptions.None);
+
+                    for (int i = 1; i < movies.Length - 1; i++)
+                    {
+                        MovieInfo movie = new MovieInfo();
+                        movie.Title = movies[i].Split(new[] { "\">" }, StringSplitOptions.None)[0];
+                        movie.URL = GlobalRequests.ActiveURL + movies[i].Split(new[] { "href=\"/" }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0];
+                        try { movie.CoverURL = GlobalRequests.ActiveURL + movies[i].Split(new[] { "src=\"/" }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0].Replace("2.jpg", "0.jpg"); } catch { }
+                        string torrentsavailable_string = movies[i].Split(new[] { "\"></i> " }, StringSplitOptions.None)[1].Split(new[] { " torrents" }, StringSplitOptions.None)[0];
+                        movie.TorrentsAvailable = -1;
+                        try { movie.TorrentsAvailable = Convert.ToInt32(torrentsavailable_string); } catch { }
+                        try { movie.GetMovieInfo(true, false); } catch { }
+                        if (movie.TorrentsAvailable > 0 || movie.TorrentsAvailable == -1)
+                            _request.Results.Add(movie);
+                    }
+                }
+                catch
+                {
+                    urlnum++;
+                    if (urlnum >= GlobalRequests.ZooqleURLs.Length)
+                    {
+                        Console.WriteLine("[WARNING] NO ZOOQLE URL IS CURRENTLY AVAILABLE!!!");
+                        return;
+                    }
+                    GlobalRequests.ActiveURL = GlobalRequests.ZooqleURLs[urlnum];
+                    goto retry;
                 }
             }
         }
@@ -142,7 +163,7 @@ namespace HTX_NINJA.Zooqle
                                             TorrentInfo torrent = new TorrentInfo();
                                             torrent.Quality = quality;
                                             string htmlpath = torrents[i2].Split(new[] { "href=\"/" }, StringSplitOptions.None)[1].Split(new[] { "\">" }, StringSplitOptions.None)[0];
-                                            torrent.URL = GlobalRequests.BaseURL + htmlpath;
+                                            torrent.URL = GlobalRequests.ActiveURL + htmlpath;
                                             torrent.Title = torrents[i2].Split(new[] { $"{htmlpath}\">" }, StringSplitOptions.None)[1].Split(new[] { "</a>" }, StringSplitOptions.None)[0];
                                             wc.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
                                             string torrent_html = wc.DownloadString(torrent.URL);
@@ -251,7 +272,7 @@ namespace HTX_NINJA.Zooqle
             }
         }
 
-        public static BitSwarm StartDownload(this TorrentInfo _torrent)
+        public static BitSwarm StartDownload(this TorrentInfo _torrent, SearchRequest request, MovieInfo selectedmovie, SocketMessageComponent arg)
         {
             Console.WriteLine("Queuing " + _torrent.Title + " for download...");
             Options opt = new Options();
@@ -269,11 +290,10 @@ namespace HTX_NINJA.Zooqle
             BitSwarm bitSwarm = new BitSwarm(opt);
 
             // Step 2: Subscribe events
-            bitSwarm.MetadataReceived += BitSwarm_MetadataReceived;
-            bitSwarm.StatsUpdated += BitSwarm_StatsUpdated;
-            bitSwarm.StatusChanged += BitSwarm_StatusChanged;
-            bitSwarm.OnFinishing += BitSwarm_OnFinishing;
-
+            bitSwarm.MetadataReceived += (sender, e) => BitSwarm_MetadataReceived(sender, e, _torrent, request, selectedmovie, arg);
+            bitSwarm.StatsUpdated += (sender, e) => BitSwarm_StatsUpdated(sender, e, _torrent, request, selectedmovie, arg);
+            bitSwarm.StatusChanged += (sender, e) => BitSwarm_StatusChanged(sender, e, _torrent, request, selectedmovie, arg);
+            bitSwarm.OnFinishing += (sender, e) => BitSwarm_OnFinishing(sender, e, _torrent, request, selectedmovie, arg);
 
             bitSwarm.Open(_torrent.Magnet);
             bitSwarm.Start();
@@ -282,13 +302,13 @@ namespace HTX_NINJA.Zooqle
             return bitSwarm;
         }
 
-        private static void BitSwarm_MetadataReceived(object source, BitSwarm.MetadataReceivedArgs e)
+        private static void BitSwarm_MetadataReceived(object source, BitSwarm.MetadataReceivedArgs e, TorrentInfo torrent, SearchRequest request, MovieInfo selectedmovie, SocketMessageComponent arg)
         {
             BitSwarm bs = source as BitSwarm;
             Console.WriteLine("BitSwarm_MetadataReceived:" + e.Torrent.file.name);
         }
 
-        private static void BitSwarm_StatsUpdated(object source, BitSwarm.StatsUpdatedArgs e)
+        private static void BitSwarm_StatsUpdated(object source, BitSwarm.StatsUpdatedArgs e, TorrentInfo torrent, SearchRequest request, MovieInfo selectedmovie, SocketMessageComponent arg)
         {
             BitSwarm bs = source as BitSwarm;
             Console.WriteLine("BitSwarm_StatsUpdated Progress: " + e.Stats.Progress + "%");
@@ -297,27 +317,59 @@ namespace HTX_NINJA.Zooqle
             Console.WriteLine("BitSwarm_StatsUpdated ETACUR: " + TimeSpan.FromSeconds(e.Stats.ETA).ToString(@"hh\:mm\:ss"));
         }
 
-        private static void BitSwarm_StatusChanged(object source, BitSwarm.StatusChangedArgs e)
+        private static void BitSwarm_StatusChanged(object source, BitSwarm.StatusChangedArgs e, TorrentInfo torrent, SearchRequest request, MovieInfo selectedmovie, SocketMessageComponent arg)
         {
             BitSwarm bs = source as BitSwarm;
             Console.WriteLine("BitSwarm_StatusChanged.Status: " + e.Status);
             Console.WriteLine("BitSwarm_StatusChanged.ErrorMsg: " + e.ErrorMsg);
         }
-        private static void BitSwarm_OnFinishing(object source, BitSwarm.FinishingArgs e)
+
+        private static void BitSwarm_OnFinishing(object source, BitSwarm.FinishingArgs e, TorrentInfo torrent, SearchRequest request, MovieInfo selectedmovie, SocketMessageComponent arg)
         {
-            BitSwarm bs = source as BitSwarm;
-            Console.WriteLine("BitSwarm_OnFinishing");
+            try
+            {
+                BitSwarm bs = source as BitSwarm;
+                Console.WriteLine("BitSwarm_OnFinishing");
+                bs.Dispose();
 
-            // clean unwanted files
-            TorrentCleaner.CleanPath(bs.Options.FolderComplete);
-            
-            // move file(s) to directory
+                Thread.Sleep(2000);
 
+                // Clean unwanted files
+                TorrentCleaner.CleanFiles(bs.Options.FolderComplete);
 
-            // Notify user in dms that download has finished
+                string newpath = Environment.CurrentDirectory + @"\";
+#if !DEBUG
+                newpath = @"F:\";
+#endif
+                switch (selectedmovie.ContentType)
+                {
+                    case ContentType.Movies: newpath = newpath + "Movies"; break;
+                    case ContentType.Series: newpath = newpath + "Series"; break;
+                    case ContentType.Documentaries: newpath = newpath + "Documentaries"; break;
+                    case ContentType.Anime: newpath = newpath + "Anime"; break;
+                    case ContentType.Undefined: newpath = newpath + "Undefined"; break;
+                }
 
-            // dispose torrent client
-            bs.Dispose();
+                newpath = $"{newpath}\\{selectedmovie.Title}\\"; // add extra folder layer
+
+                // Move and rename file(s)
+                // DONT USE THIS FOR SERIES AND ANIME (SINCE RENAMING WILL JUST MAKE EVERY FILE THE SAME NAME)
+                TorrentCleaner.MoveAndRenameFiles(bs.Options.FolderComplete, newpath, selectedmovie.Title);
+
+                // Notify user in dms that download has finished
+                EmbedBuilder embedBuilder = new EmbedBuilder();
+                embedBuilder.WithTitle($"{selectedmovie.Title} has finished downloading!");
+                embedBuilder.WithDescription($"You can expect the content to be on the site within about 1-2 minutes.");
+                embedBuilder.WithThumbnailUrl(selectedmovie.CoverURL);
+                embedBuilder.WithFooter($"HTX.NINJA | Zebratic#6969");
+                try { Program._client.GetUser(request.User.Id).SendMessageAsync(embed: embedBuilder.Build()); } catch (Exception ex) { Console.WriteLine(ex); }
+
+                // dispose torrent client
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

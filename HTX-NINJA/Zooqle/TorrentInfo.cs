@@ -39,6 +39,7 @@ namespace HTX_NINJA.Zooqle
         public List<TorrentInfo> Torrents = new List<TorrentInfo>();
         public List<Quality> Qualities = new List<Quality>();
         public Quality SelectedQuality { get; set; }
+        public ContentType ContentType { get; set; }
         public MovieInfo(string _title, string _url, string _coverurl, int _torrentsavailable)
         {
             Title = _title;
@@ -46,6 +47,7 @@ namespace HTX_NINJA.Zooqle
             CoverURL = _coverurl;
             TorrentsAvailable = _torrentsavailable;
             SelectedQuality = Quality._Undefined;
+            ContentType = ContentType.Undefined;
         }
 
         public MovieInfo()
@@ -65,6 +67,15 @@ namespace HTX_NINJA.Zooqle
         _Med,
         _Low,
         _Unknown,
+    }
+
+    public enum ContentType
+    {
+        Undefined,
+        Movies,
+        Series,
+        Documentaries,
+        Anime,
     }
 
     public static class QualityExtensions

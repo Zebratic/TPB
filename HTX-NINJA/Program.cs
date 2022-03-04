@@ -26,7 +26,7 @@ namespace HTX_NINJA
         }
 
 
-        private DiscordSocketClient _client;
+        public static DiscordSocketClient _client;
         private CommandService _commands;
         private IServiceProvider _services;
 
@@ -168,9 +168,7 @@ namespace HTX_NINJA
 
                                 TorrentInfo torrent = sortedtorrents.First();
 
-                                
-
-                                request.BitSwarm = torrent.StartDownload();
+                                request.BitSwarm = torrent.StartDownload(request, selectedmovie, arg);
 
                                 /* All needed now is:
                                     - Torrent downloading
@@ -237,6 +235,7 @@ namespace HTX_NINJA
 
         private async Task _client_Ready()
         {
+
             Console.WriteLine("Bot is online and working perfectly fine!");
             new Thread(RPC).Start(); // start the RPC messages
 

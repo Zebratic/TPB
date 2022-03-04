@@ -9,17 +9,53 @@ namespace HTX_NINJA.Zooqle
 {
     public class TorrentCleaner
     {
-        public static string[] allowedExtensions = { "mp4", "webm", "mkv", "mov", "avi", "wmv", "m4v", "mts", "wmv", "" };
-        public static void CleanPath(string path)
+        public static string[] allowedExtensions = { "mp4", "webm", "mkv", "mov", "avi", "wmv", "m4v", "mts", "wmv", "srt", "ssc" };
+        public static void CleanFiles(string path)
         {
-            DirectoryInfo d = new DirectoryInfo(path);
-
             // Clean unwanted files
-            foreach (FileInfo file in d.GetFiles())
-                if (!allowedExtensions.Contains(file.Extension))
-                    try { file.Delete(); } catch { Console.WriteLine("Failed to delete: " + file.FullName); }
+            foreach (string file in GetAllFiles(path))
+            {
+                if (!allowedExtensions.Contains(Path.GetExtension(file).Replace(".", "")))
+                {
+                    Console.WriteLine("DELETING: " + file);
+                    try { File.Delete(file); } catch (Exception ex) { Console.WriteLine("Failed to delete: " + file + "\n" + ex); }
+                }
+            }
+        }
 
-                
+        public static void MoveAndRenameFiles(string path, string newpath, string name)
+        {
+            // Create directories if missing
+            Directory.CreateDirectory(newpath);
+
+            // Move and rename files
+            foreach (string file in GetAllFiles(path))
+            {
+                string tempname = name;
+            retry:
+                try { File.Move(file, $"{newpath}\\{tempname}{Path.GetExtension(file)}"); }
+                catch
+                {
+                    tempname = tempname + ".";
+                    goto retry;
+                }
+            }
+        }
+
+        private static List<string> GetAllFiles(string dir)
+        {
+            List<string> files = new List<string>();
+            try
+            {
+                foreach (string f in Directory.GetFiles(dir))
+                    files.Add(f);
+
+                foreach (string d in Directory.GetDirectories(dir))
+                    files.AddRange(GetAllFiles(d));
+            }
+            catch (Exception ex) { Console.WriteLine(ex); }
+
+            return files;
         }
     }
 }
